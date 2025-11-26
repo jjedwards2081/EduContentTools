@@ -1,9 +1,10 @@
 # EduContentTools
 
-A powerful CLI application for creating educational content from Minecraft Education worlds, with AI-powered content generation and multi-format export capabilities.
+A powerful desktop application for creating educational content from Minecraft Education worlds, with AI-powered content generation and multi-format export capabilities.
 
 ## 🎯 Features
 
+- **🎨 Modern GUI or CLI**: Choose between a clean desktop interface or traditional command-line
 - **Game Management**: Create, organize, and manage game projects
 - **World File Processing**: Upload and extract language files from .mcworld files
 - **Document Analysis**: Analyze supporting documents (PDF, Word, PowerPoint)
@@ -18,11 +19,15 @@ A powerful CLI application for creating educational content from Minecraft Educa
 
 ## 🚀 Quick Start
 
-### Option 1: Standalone Application (Recommended)
+> **⚠️ macOS 15+ GUI Users:** If you get a crash, see **[QUICKFIX.md](QUICKFIX.md)** for a 5-minute solution!
+
+### Option 1: Standalone Application (Recommended) 🎨
 Download the pre-built executable for your platform - no Python required!
 
-**macOS**: Extract and run `EduContentTools`  
-**Windows**: Extract and run `EduContentTools.exe`
+**macOS**: Extract and run `EduContentTools` (GUI mode)  
+**Windows**: Extract and run `EduContentTools.exe` (GUI mode)
+
+The GUI provides a modern, visual interface with tabbed navigation, drag-and-drop support, and real-time progress updates.
 
 See [docs/STANDALONE_README.md](docs/STANDALONE_README.md) for detailed instructions.
 
@@ -33,12 +38,35 @@ See [docs/STANDALONE_README.md](docs/STANDALONE_README.md) for detailed instruct
 ```bash
 pip install -r requirements.txt
 ```
+
 3. Run the application:
+
+**Universal Launcher (Recommended):**
 ```bash
-python main.py
+python launcher.py           # Starts in CLI mode (safe default)
+python launcher.py --cli     # Explicitly use CLI mode
+python launcher.py --gui     # Try GUI mode (requires compatible Python)
 ```
 
-## 📋 Main Menu Options
+**Direct Launch:**
+```bash
+python gui_app.py    # GUI mode
+python main.py       # CLI mode
+```
+
+> **⚠️ macOS 15+ GUI Issue:** Command Line Tools Python uses old Tk 8.5 which crashes. **Solution:** Install Python from python.org or Homebrew. See **[QUICKFIX.md](QUICKFIX.md)** for step-by-step instructions (5 minutes). Detailed info: [docs/TKINTER_ISSUES.md](docs/TKINTER_ISSUES.md)
+
+## 🎨 GUI Interface
+
+The desktop GUI provides:
+- **📋 Overview Tab**: View game info, upload files, extract language data
+- **✏️ Content Tab**: Edit context, gameplay, and objectives
+- **🎨 Create Tab**: Generate all content types with visual progress
+- **📤 Export Tab**: Export to Markdown, Word, or PDF with logs
+
+See [docs/GUI_GUIDE.md](docs/GUI_GUIDE.md) for complete GUI documentation.
+
+## 📋 CLI Menu Options
 
 1. **Create New Game** - Start a new educational content project
 2. **Load Existing Game** - Continue working on a saved project
@@ -113,21 +141,31 @@ games/
 
 ## 📚 Documentation
 
-- [Standalone App Guide](docs/STANDALONE_README.md) - User guide for executables
-- [Build Instructions](docs/BUILD_INSTRUCTIONS.md) - Build from source
-- [Export Formats](docs/EXPORT_FORMATS.md) - Export format details
-- [Complete Overview](docs/STANDALONE_COMPLETE.md) - Full documentation
+- **[GUI Guide](docs/GUI_GUIDE.md)** - Desktop application user guide
+- **[Tkinter Issues](docs/TKINTER_ISSUES.md)** - ⚠️ macOS 15+ GUI compatibility solutions
+- **[Standalone App Guide](docs/STANDALONE_README.md)** - User guide for executables
+- **[Build Instructions](docs/BUILD_INSTRUCTIONS.md)** - Build from source
+- **[Export Formats](docs/EXPORT_FORMATS.md)** - Export format details
+- **[Complete Overview](docs/STANDALONE_COMPLETE.md)** - Full documentation
 
 ## 🛠️ Building
 
-To build standalone executables:
-
+**Build GUI Application (Recommended):**
 ```bash
-python build_app.py
+python build_gui.py gui
 ```
 
-To create distribution packages:
+**Build CLI Application:**
+```bash
+python build_gui.py cli
+```
 
+**Build Both:**
+```bash
+python build_gui.py both
+```
+
+**Create Distribution Packages:**
 ```bash
 python create_distribution.py
 ```
@@ -137,8 +175,14 @@ See [docs/BUILD_INSTRUCTIONS.md](docs/BUILD_INSTRUCTIONS.md) for details.
 ## 📦 Distribution
 
 Pre-built executables available in `dist/` folder:
-- `EduContentTools-macOS-[date].zip` - macOS version
-- `EduContentTools-Windows-[date].zip` - Windows version (build on Windows)
+- `EduContentTools-macOS-[date].zip` - macOS version (GUI + CLI)
+- `EduContentTools-Windows-[date].zip` - Windows version (GUI + CLI) - build on Windows
+
+**What's included:**
+- GUI executable (modern desktop interface)
+- CLI executable (command-line interface)
+- Complete documentation
+- Example games folder structure
 
 ## 📄 License
 

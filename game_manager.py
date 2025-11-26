@@ -1487,7 +1487,7 @@ Current objectives:
                 if "documents" in metadata and metadata["documents"]:
                     remaining_docs = metadata["documents"]
                     
-                    print(f"\n🔄 Updating analysis for {len(remaining_docs)} remaining document(s)...")
+                    print(f"\nUpdating analysis for {len(remaining_docs)} remaining document(s)...")
                     
                     # Re-analyze each remaining document that was previously analyzed
                     for doc in remaining_docs:

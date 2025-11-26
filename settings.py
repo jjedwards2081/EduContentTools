@@ -63,6 +63,10 @@ class Settings:
         self.config = {}
         return self._save_config()
     
+    def get_api_endpoint(self):
+        """Get the API endpoint."""
+        return self.config.get('endpoint', '')
+    
     def get_azure_config(self):
         """Get Azure OpenAI configuration for API calls."""
         return {

@@ -72,7 +72,7 @@ def main():
     
     # Check if we're in the right directory
     if not os.path.exists("main.py"):
-        print("\n✗ Error: main.py not found!")
+        print("\n[ERROR] Error: main.py not found!")
         print("Please run this script from the EduContentTools directory.")
         sys.exit(1)
     
@@ -84,10 +84,10 @@ def main():
         build_executable()
         
     except subprocess.CalledProcessError as e:
-        print(f"\n✗ Build failed: {e}")
+        print(f"\n[ERROR] Build failed: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"\n✗ Unexpected error: {e}")
+        print(f"\n[ERROR] Unexpected error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

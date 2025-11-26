@@ -10,6 +10,12 @@ from game_manager import GameManager
 from settings import Settings
 
 
+def main():
+    """Main entry point for CLI application."""
+    app = EduContentTools()
+    app.run()
+
+
 class EduContentTools:
     def __init__(self):
         self.settings = Settings()
@@ -28,30 +34,30 @@ class EduContentTools:
         print("=" * 70)
         
         if self.current_game:
-            print(f"\n📁 Current Game: {self.current_game}")
+            print(f"\n Current Game: {self.current_game}")
             
             # Show quick status
             info = self.game_manager.load_game_info(self.current_game)
             status_items = []
             if info:
-                if info.get("world_files"): status_items.append("World ✓")
-                if info.get("context"): status_items.append("Context ✓")
-                if info.get("gameplay"): status_items.append("Gameplay ✓")
-                if info.get("objectives"): status_items.append("Objectives ✓")
+                if info.get("world_files"): status_items.append("World [OK]")
+                if info.get("context"): status_items.append("Context [OK]")
+                if info.get("gameplay"): status_items.append("Gameplay [OK]")
+                if info.get("objectives"): status_items.append("Objectives [OK]")
                 
                 metadata = self.game_manager._load_metadata(self.current_game)
                 if metadata and metadata.get("lang_file"):
-                    status_items.append("Lang ✓")
+                    status_items.append("Lang [OK]")
                 if info.get("lang_analysis"):
-                    status_items.append("Analysis ✓")
+                    status_items.append("Analysis [OK]")
                 if metadata and metadata.get("documents"):
                     doc_count = len(metadata["documents"])
-                    status_items.append(f"Docs({doc_count}) ✓")
+                    status_items.append(f"Docs({doc_count}) [OK]")
             
             if status_items:
                 print(f"   Status: {' | '.join(status_items)}")
         else:
-            print(f"\n📁 No game loaded - Start by creating or loading a game")
+            print(f"\n No game loaded - Start by creating or loading a game")
         
         print("\n" + "-" * 70)
         print("GAME MANAGEMENT:")
@@ -104,7 +110,7 @@ class EduContentTools:
         games = self.game_manager.list_games()
         
         if not games:
-            print("\n✗ No game folders found!")
+            print("\n[ERROR] No game folders found!")
             self.wait_for_key()
             return
         
@@ -126,7 +132,7 @@ class EduContentTools:
                 game_to_delete = games[game_index]
                 
                 # Confirm deletion
-                print(f"\n⚠️  WARNING: This will permanently delete '{game_to_delete}' and all its contents!")
+                print(f"\n[WARNING]  WARNING: This will permanently delete '{game_to_delete}' and all its contents!")
                 print("   This includes:")
                 print("   - World files")
                 print("   - Documents")
@@ -138,20 +144,20 @@ class EduContentTools:
                 
                 if confirm == game_to_delete:
                     if self.game_manager.delete_game_folder(game_to_delete):
-                        print(f"\n✓ Successfully deleted '{game_to_delete}'")
+                        print(f"\n[OK] Successfully deleted '{game_to_delete}'")
                         
                         # If deleted game was current, clear it
                         if self.current_game == game_to_delete:
                             self.current_game = None
-                            print("\n✓ Current game cleared")
+                            print("\n[OK] Current game cleared")
                     else:
-                        print(f"\n✗ Failed to delete '{game_to_delete}'")
+                        print(f"\n[ERROR] Failed to delete '{game_to_delete}'")
                 else:
-                    print("\n✗ Deletion cancelled - name didn't match")
+                    print("\n[ERROR] Deletion cancelled - name didn't match")
             else:
-                print("\n✗ Invalid game number!")
+                print("\n[ERROR] Invalid game number!")
         except ValueError:
-            print("\n✗ Please enter a valid number!")
+            print("\n[ERROR] Please enter a valid number!")
         
         self.wait_for_key()
     
@@ -164,14 +170,14 @@ class EduContentTools:
         
         game_name = input("\nEnter game name: ").strip()
         if not game_name:
-            print("\n✗ Game name cannot be empty!")
+            print("\n[ERROR] Game name cannot be empty!")
             self.wait_for_key()
             return
         
         result = self.game_manager.create_game_folder(game_name)
         if result:
             self.current_game = game_name
-            print(f"\n✓ Game folder '{game_name}' created successfully!")
+            print(f"\n[OK] Game folder '{game_name}' created successfully!")
             
             # Prompt to upload world file
             upload = input("\nWould you like to upload a world file now? (y/n): ").strip().lower()
@@ -188,15 +194,15 @@ class EduContentTools:
                         if selection > 0 and selection <= len(world_files):
                             file_path = world_files[selection - 1]
                             if self.game_manager.upload_world_file(game_name, file_path):
-                                print(f"\n✓ World file uploaded successfully!")
+                                print(f"\n[OK] World file uploaded successfully!")
                             else:
-                                print(f"\n✗ Failed to upload world file!")
+                                print(f"\n[ERROR] Failed to upload world file!")
                     except ValueError:
-                        print("\n✗ Invalid input!")
+                        print("\n[ERROR] Invalid input!")
                 else:
-                    print("\n✗ No .mcworld or .mctemplate files found in Downloads!")
+                    print("\n[ERROR] No .mcworld or .mctemplate files found in Downloads!")
         else:
-            print(f"\n✗ Game folder '{game_name}' already exists!")
+            print(f"\n[ERROR] Game folder '{game_name}' already exists!")
         
         self.wait_for_key()
     
@@ -210,7 +216,7 @@ class EduContentTools:
         games = self.game_manager.list_games()
         
         if not games:
-            print("\n✗ No games found! Create a new game first.")
+            print("\n[ERROR] No games found! Create a new game first.")
             self.wait_for_key()
             return
         
@@ -238,11 +244,11 @@ class EduContentTools:
                 return
             if 1 <= selection <= len(games):
                 self.current_game = games[selection - 1]
-                print(f"\n✓ Loaded game: {self.current_game}")
+                print(f"\n[OK] Loaded game: {self.current_game}")
             else:
-                print("\n✗ Invalid selection!")
+                print("\n[ERROR] Invalid selection!")
         except ValueError:
-            print("\n✗ Invalid input!")
+            print("\n[ERROR] Invalid input!")
         
         self.wait_for_key()
     
@@ -267,7 +273,7 @@ class EduContentTools:
                 elif 1 <= selection <= len(world_files):
                     file_path = world_files[selection - 1]
                     if self.game_manager.upload_world_file(self.current_game, file_path):
-                        print(f"\n✓ World file uploaded successfully!")
+                        print(f"\n[OK] World file uploaded successfully!")
                         
                         # Prompt to extract lang files
                         extract = input("\nExtract language files now? (y/n): ").strip().lower()
@@ -275,13 +281,13 @@ class EduContentTools:
                             self.extract_lang_files()
                             return  # Don't wait for key as extract_lang_files does it
                     else:
-                        print(f"\n✗ Failed to upload world file!")
+                        print(f"\n[ERROR] Failed to upload world file!")
                 else:
-                    print("\n✗ Invalid selection!")
+                    print("\n[ERROR] Invalid selection!")
             except ValueError:
-                print("\n✗ Invalid input!")
+                print("\n[ERROR] Invalid input!")
         else:
-            print("\n✗ No .mcworld or .mctemplate files found in Downloads!")
+            print("\n[ERROR] No .mcworld or .mctemplate files found in Downloads!")
         
         self.wait_for_key()
     
@@ -306,11 +312,11 @@ class EduContentTools:
                 result = self.game_manager.create_game_folder(game_name)
                 if result:
                     self.current_game = game_name
-                    print(f"\n✓ Game folder '{game_name}' created successfully!")
+                    print(f"\n[OK] Game folder '{game_name}' created successfully!")
                 else:
-                    print(f"\n✗ Game folder '{game_name}' already exists!")
+                    print(f"\n[ERROR] Game folder '{game_name}' already exists!")
             else:
-                print("\n✗ Game name cannot be empty!")
+                print("\n[ERROR] Game name cannot be empty!")
             self.wait_for_key()
             
         elif choice == "2":
@@ -319,7 +325,7 @@ class EduContentTools:
                 result = self.game_manager.create_game_folder(game_name)
                 if result:
                     self.current_game = game_name
-                    print(f"\n✓ Game folder '{game_name}' created successfully!")
+                    print(f"\n[OK] Game folder '{game_name}' created successfully!")
                     
                     # Now upload world file
                     world_files = self.game_manager.list_world_files_in_downloads()
@@ -335,19 +341,19 @@ class EduContentTools:
                             elif 1 <= selection <= len(world_files):
                                 file_path = world_files[selection - 1]
                                 if self.game_manager.upload_world_file(game_name, file_path):
-                                    print(f"\n✓ World file uploaded successfully!")
+                                    print(f"\n[OK] World file uploaded successfully!")
                                 else:
-                                    print(f"\n✗ Failed to upload world file!")
+                                    print(f"\n[ERROR] Failed to upload world file!")
                             else:
-                                print("\n✗ Invalid selection!")
+                                print("\n[ERROR] Invalid selection!")
                         except ValueError:
-                            print("\n✗ Invalid input!")
+                            print("\n[ERROR] Invalid input!")
                     else:
-                        print("\n✗ No .mcworld or .mctemplate files found in Downloads!")
+                        print("\n[ERROR] No .mcworld or .mctemplate files found in Downloads!")
                 else:
-                    print(f"\n✗ Game folder '{game_name}' already exists!")
+                    print(f"\n[ERROR] Game folder '{game_name}' already exists!")
             else:
-                print("\n✗ Game name cannot be empty!")
+                print("\n[ERROR] Game name cannot be empty!")
             self.wait_for_key()
             
         elif choice == "3":
@@ -361,18 +367,18 @@ class EduContentTools:
                     selection = int(input("\nSelect game number: ").strip())
                     if 1 <= selection <= len(games):
                         self.current_game = games[selection - 1]
-                        print(f"\n✓ Loaded game: {self.current_game}")
+                        print(f"\n[OK] Loaded game: {self.current_game}")
                     else:
-                        print("\n✗ Invalid selection!")
+                        print("\n[ERROR] Invalid selection!")
                 except ValueError:
-                    print("\n✗ Invalid input!")
+                    print("\n[ERROR] Invalid input!")
             else:
-                print("\n✗ No games found!")
+                print("\n[ERROR] No games found!")
             self.wait_for_key()
             
         elif choice == "4":
             if not self.current_game:
-                print("\n✗ Please load a game first!")
+                print("\n[ERROR] Please load a game first!")
                 self.wait_for_key()
                 return
             
@@ -389,21 +395,21 @@ class EduContentTools:
                     elif 1 <= selection <= len(world_files):
                         file_path = world_files[selection - 1]
                         if self.game_manager.upload_world_file(self.current_game, file_path):
-                            print(f"\n✓ World file uploaded successfully!")
+                            print(f"\n[OK] World file uploaded successfully!")
                         else:
-                            print(f"\n✗ Failed to upload world file!")
+                            print(f"\n[ERROR] Failed to upload world file!")
                     else:
-                        print("\n✗ Invalid selection!")
+                        print("\n[ERROR] Invalid selection!")
                 except ValueError:
-                    print("\n✗ Invalid input!")
+                    print("\n[ERROR] Invalid input!")
             else:
-                print("\n✗ No .mcworld or .mctemplate files found in Downloads!")
+                print("\n[ERROR] No .mcworld or .mctemplate files found in Downloads!")
             self.wait_for_key()
     
     def add_game_context(self):
         """Option 2: Add game context."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -417,7 +423,7 @@ class EduContentTools:
         existing_context = existing_info.get("context") if existing_info else None
         
         if existing_context:
-            print("\n📝 EXISTING CONTEXT:")
+            print("\n EXISTING CONTEXT:")
             print("-" * 60)
             print(existing_context)
             print("-" * 60)
@@ -449,10 +455,10 @@ class EduContentTools:
                 new_context = "\n".join(lines).strip()
                 context = new_context if new_context else existing_context
             elif choice == "3" and self.settings.is_configured():
-                print("\n🤖 Standardizing context with Azure OpenAI...")
+                print("\n[AI] Standardizing context with Azure OpenAI...")
                 standardized = self.game_manager.standardize_with_ai(existing_context, "context")
                 if standardized:
-                    print("\n📝 STANDARDIZED CONTEXT:")
+                    print("\n STANDARDIZED CONTEXT:")
                     print("-" * 60)
                     print(standardized)
                     print("-" * 60)
@@ -461,16 +467,16 @@ class EduContentTools:
                     if confirm == 'y':
                         context = standardized
                         self.game_manager.save_game_info(self.current_game, "context", context)
-                        print(f"\n✓ Standardized context saved for '{self.current_game}'!")
+                        print(f"\n[OK] Standardized context saved for '{self.current_game}'!")
                     else:
-                        print("\n✗ Standardization cancelled.")
+                        print("\n[ERROR] Standardization cancelled.")
                 else:
-                    print("\n✗ Failed to standardize context.")
+                    print("\n[ERROR] Failed to standardize context.")
                 self.wait_for_key()
                 return
             elif choice == "4" and self.settings.is_configured():
                 # Generate context from existing data sources
-                print("\n🔍 Checking available data sources...")
+                print("\n Checking available data sources...")
                 
                 info = self.game_manager.load_game_info(self.current_game)
                 metadata = self.game_manager._load_metadata(self.current_game)
@@ -479,29 +485,29 @@ class EduContentTools:
                 has_docs = info and info.get("document_analysis")
                 
                 if not has_lang and not has_docs:
-                    print("\n✗ No language file analysis or document analysis found!")
+                    print("\n[ERROR] No language file analysis or document analysis found!")
                     print("   Please upload a world file or documents first.")
                     self.wait_for_key()
                     return
                 
-                print("\n📊 Using the following data sources:")
+                print("\n Using the following data sources:")
                 if has_lang:
-                    print("   ✓ Language File Analysis (NPC dialogue & narrative)")
+                    print("   [OK] Language File Analysis (NPC dialogue & narrative)")
                 if has_docs:
                     doc_count = len(metadata.get("documents", []))
-                    print(f"   ✓ Document Analysis ({doc_count} document(s))")
+                    print(f"   [OK] Document Analysis ({doc_count} document(s))")
                 
                 confirm = input("\n Generate context from these sources? (y/n): ").strip().lower()
                 if confirm != 'y':
-                    print("\n✗ Generation cancelled.")
+                    print("\n[ERROR] Generation cancelled.")
                     self.wait_for_key()
                     return
                 
-                print("\n🤖 Generating context from available data...")
+                print("\n[AI] Generating context from available data...")
                 generated = self.game_manager.generate_context_from_data(self.current_game)
                 
                 if generated:
-                    print("\n📝 GENERATED CONTEXT:")
+                    print("\n GENERATED CONTEXT:")
                     print("-" * 60)
                     print(generated)
                     print("-" * 60)
@@ -510,11 +516,11 @@ class EduContentTools:
                     if confirm == 'y':
                         context = generated
                         self.game_manager.save_game_info(self.current_game, "context", context)
-                        print(f"\n✓ Generated context saved for '{self.current_game}'!")
+                        print(f"\n[OK] Generated context saved for '{self.current_game}'!")
                     else:
-                        print("\n✗ Generation cancelled.")
+                        print("\n[ERROR] Generation cancelled.")
                 else:
-                    print("\n✗ Failed to generate context.")
+                    print("\n[ERROR] Failed to generate context.")
                 self.wait_for_key()
                 return
             elif choice == "1":
@@ -531,7 +537,7 @@ class EduContentTools:
                 
                 context = "\n".join(lines)
             else:
-                print("\n✗ Invalid choice!")
+                print("\n[ERROR] Invalid choice!")
                 self.wait_for_key()
                 return
         else:
@@ -544,12 +550,12 @@ class EduContentTools:
                 has_docs = info and info.get("document_analysis")
                 
                 if has_lang or has_docs:
-                    print("\n📊 Data sources available for AI generation:")
+                    print("\n Data sources available for AI generation:")
                     if has_lang:
-                        print("   ✓ Language File Analysis")
+                        print("   [OK] Language File Analysis")
                     if has_docs:
                         doc_count = len(metadata.get("documents", []))
-                        print(f"   ✓ Document Analysis ({doc_count} document(s))")
+                        print(f"   [OK] Document Analysis ({doc_count} document(s))")
                     
                     print("\n1. Generate context from available data (AI)")
                     print("2. Enter context manually")
@@ -560,11 +566,11 @@ class EduContentTools:
                     if choice == "0":
                         return
                     elif choice == "1":
-                        print("\n🤖 Generating context from available data...")
+                        print("\n[AI] Generating context from available data...")
                         generated = self.game_manager.generate_context_from_data(self.current_game)
                         
                         if generated:
-                            print("\n📝 GENERATED CONTEXT:")
+                            print("\n GENERATED CONTEXT:")
                             print("-" * 60)
                             print(generated)
                             print("-" * 60)
@@ -573,19 +579,19 @@ class EduContentTools:
                             if confirm == 'y':
                                 context = generated
                                 self.game_manager.save_game_info(self.current_game, "context", context)
-                                print(f"\n✓ Generated context saved for '{self.current_game}'!")
+                                print(f"\n[OK] Generated context saved for '{self.current_game}'!")
                                 self.wait_for_key()
                                 return
                             else:
-                                print("\n✗ Generation cancelled.")
+                                print("\n[ERROR] Generation cancelled.")
                                 self.wait_for_key()
                                 return
                         else:
-                            print("\n✗ Failed to generate context.")
+                            print("\n[ERROR] Failed to generate context.")
                             self.wait_for_key()
                             return
                     elif choice != "2":
-                        print("\n✗ Invalid choice!")
+                        print("\n[ERROR] Invalid choice!")
                         self.wait_for_key()
                         return
             
@@ -608,23 +614,23 @@ class EduContentTools:
                 use_ai = input("\n\nUse Azure OpenAI to enhance context? (y/n): ").strip().lower()
                 
                 if use_ai == 'y' and self.settings.is_configured():
-                    print("\n🤖 Enhancing context with AI...")
+                    print("\n[AI] Enhancing context with AI...")
                     enhanced_context = self.game_manager.enhance_with_ai(context, "context")
                     if enhanced_context:
                         context = enhanced_context
-                        print("✓ Context enhanced!")
+                        print("[OK] Context enhanced!")
             
             self.game_manager.save_game_info(self.current_game, "context", context)
-            print(f"\n✓ Game context saved for '{self.current_game}'!")
+            print(f"\n[OK] Game context saved for '{self.current_game}'!")
         else:
-            print("\n✗ Context cannot be empty!")
+            print("\n[ERROR] Context cannot be empty!")
         
         self.wait_for_key()
     
     def add_gameplay_description(self):
         """Option 3: Add gameplay description."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -638,7 +644,7 @@ class EduContentTools:
         existing_gameplay = existing_info.get("gameplay") if existing_info else None
         
         if existing_gameplay:
-            print("\n🎮 EXISTING GAMEPLAY DESCRIPTION:")
+            print("\n EXISTING GAMEPLAY DESCRIPTION:")
             print("-" * 60)
             print(existing_gameplay)
             print("-" * 60)
@@ -670,10 +676,10 @@ class EduContentTools:
                 new_description = "\n".join(lines).strip()
                 description = new_description if new_description else existing_gameplay
             elif choice == "3" and self.settings.is_configured():
-                print("\n🤖 Standardizing gameplay description with Azure OpenAI...")
+                print("\n[AI] Standardizing gameplay description with Azure OpenAI...")
                 standardized = self.game_manager.standardize_with_ai(existing_gameplay, "gameplay")
                 if standardized:
-                    print("\n🎮 STANDARDIZED GAMEPLAY DESCRIPTION:")
+                    print("\n STANDARDIZED GAMEPLAY DESCRIPTION:")
                     print("-" * 60)
                     print(standardized)
                     print("-" * 60)
@@ -682,16 +688,16 @@ class EduContentTools:
                     if confirm == 'y':
                         description = standardized
                         self.game_manager.save_game_info(self.current_game, "gameplay", description)
-                        print(f"\n✓ Standardized gameplay description saved for '{self.current_game}'!")
+                        print(f"\n[OK] Standardized gameplay description saved for '{self.current_game}'!")
                     else:
-                        print("\n✗ Standardization cancelled.")
+                        print("\n[ERROR] Standardization cancelled.")
                 else:
-                    print("\n✗ Failed to standardize description.")
+                    print("\n[ERROR] Failed to standardize description.")
                 self.wait_for_key()
                 return
             elif choice == "4" and self.settings.is_configured():
                 # Generate gameplay from existing data sources
-                print("\n🔍 Checking available data sources...")
+                print("\n Checking available data sources...")
                 
                 info = self.game_manager.load_game_info(self.current_game)
                 metadata = self.game_manager._load_metadata(self.current_game)
@@ -700,29 +706,29 @@ class EduContentTools:
                 has_docs = info and info.get("document_analysis")
                 
                 if not has_lang and not has_docs:
-                    print("\n✗ No language file analysis or document analysis found!")
+                    print("\n[ERROR] No language file analysis or document analysis found!")
                     print("   Please upload a world file or documents first.")
                     self.wait_for_key()
                     return
                 
-                print("\n📊 Using the following data sources:")
+                print("\n Using the following data sources:")
                 if has_lang:
-                    print("   ✓ Language File Analysis (NPC dialogue & narrative)")
+                    print("   [OK] Language File Analysis (NPC dialogue & narrative)")
                 if has_docs:
                     doc_count = len(metadata.get("documents", []))
-                    print(f"   ✓ Document Analysis ({doc_count} document(s))")
+                    print(f"   [OK] Document Analysis ({doc_count} document(s))")
                 
                 confirm = input("\nGenerate gameplay description from these sources? (y/n): ").strip().lower()
                 if confirm != 'y':
-                    print("\n✗ Generation cancelled.")
+                    print("\n[ERROR] Generation cancelled.")
                     self.wait_for_key()
                     return
                 
-                print("\n🤖 Generating gameplay description from available data...")
+                print("\n[AI] Generating gameplay description from available data...")
                 generated = self.game_manager.generate_gameplay_from_data(self.current_game)
                 
                 if generated:
-                    print("\n🎮 GENERATED GAMEPLAY DESCRIPTION:")
+                    print("\n GENERATED GAMEPLAY DESCRIPTION:")
                     print("-" * 60)
                     print(generated)
                     print("-" * 60)
@@ -731,11 +737,11 @@ class EduContentTools:
                     if confirm == 'y':
                         description = generated
                         self.game_manager.save_game_info(self.current_game, "gameplay", description)
-                        print(f"\n✓ Generated gameplay description saved for '{self.current_game}'!")
+                        print(f"\n[OK] Generated gameplay description saved for '{self.current_game}'!")
                     else:
-                        print("\n✗ Generation cancelled.")
+                        print("\n[ERROR] Generation cancelled.")
                 else:
-                    print("\n✗ Failed to generate gameplay description.")
+                    print("\n[ERROR] Failed to generate gameplay description.")
                 self.wait_for_key()
                 return
             elif choice == "1":
@@ -752,7 +758,7 @@ class EduContentTools:
                 
                 description = "\n".join(lines)
             else:
-                print("\n✗ Invalid choice!")
+                print("\n[ERROR] Invalid choice!")
                 self.wait_for_key()
                 return
         else:
@@ -765,12 +771,12 @@ class EduContentTools:
                 has_docs = info and info.get("document_analysis")
                 
                 if has_lang or has_docs:
-                    print("\n📊 Data sources available for AI generation:")
+                    print("\n Data sources available for AI generation:")
                     if has_lang:
-                        print("   ✓ Language File Analysis")
+                        print("   [OK] Language File Analysis")
                     if has_docs:
                         doc_count = len(metadata.get("documents", []))
-                        print(f"   ✓ Document Analysis ({doc_count} document(s))")
+                        print(f"   [OK] Document Analysis ({doc_count} document(s))")
                     
                     print("\n1. Generate gameplay description from available data (AI)")
                     print("2. Enter gameplay description manually")
@@ -781,11 +787,11 @@ class EduContentTools:
                     if choice == "0":
                         return
                     elif choice == "1":
-                        print("\n🤖 Generating gameplay description from available data...")
+                        print("\n[AI] Generating gameplay description from available data...")
                         generated = self.game_manager.generate_gameplay_from_data(self.current_game)
                         
                         if generated:
-                            print("\n🎮 GENERATED GAMEPLAY DESCRIPTION:")
+                            print("\n GENERATED GAMEPLAY DESCRIPTION:")
                             print("-" * 60)
                             print(generated)
                             print("-" * 60)
@@ -794,19 +800,19 @@ class EduContentTools:
                             if confirm == 'y':
                                 description = generated
                                 self.game_manager.save_game_info(self.current_game, "gameplay", description)
-                                print(f"\n✓ Generated gameplay description saved for '{self.current_game}'!")
+                                print(f"\n[OK] Generated gameplay description saved for '{self.current_game}'!")
                                 self.wait_for_key()
                                 return
                             else:
-                                print("\n✗ Generation cancelled.")
+                                print("\n[ERROR] Generation cancelled.")
                                 self.wait_for_key()
                                 return
                         else:
-                            print("\n✗ Failed to generate gameplay description.")
+                            print("\n[ERROR] Failed to generate gameplay description.")
                             self.wait_for_key()
                             return
                     elif choice != "2":
-                        print("\n✗ Invalid choice!")
+                        print("\n[ERROR] Invalid choice!")
                         self.wait_for_key()
                         return
             
@@ -828,23 +834,23 @@ class EduContentTools:
                 use_ai = input("\n\nUse Azure OpenAI to enhance description? (y/n): ").strip().lower()
                 
                 if use_ai == 'y' and self.settings.is_configured():
-                    print("\n🤖 Enhancing description with AI...")
+                    print("\n[AI] Enhancing description with AI...")
                     enhanced_description = self.game_manager.enhance_with_ai(description, "gameplay")
                     if enhanced_description:
                         description = enhanced_description
-                        print("✓ Description enhanced!")
+                        print("[OK] Description enhanced!")
             
             self.game_manager.save_game_info(self.current_game, "gameplay", description)
-            print(f"\n✓ Gameplay description saved for '{self.current_game}'!")
+            print(f"\n[OK] Gameplay description saved for '{self.current_game}'!")
         else:
-            print("\n✗ Description cannot be empty!")
+            print("\n[ERROR] Description cannot be empty!")
         
         self.wait_for_key()
     
     def add_learning_objectives(self):
         """Option 4: Add learning objectives."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -858,7 +864,7 @@ class EduContentTools:
         existing_objectives = existing_info.get("objectives") if existing_info else None
         
         if existing_objectives:
-            print("\n🎯 EXISTING LEARNING OBJECTIVES:")
+            print("\n EXISTING LEARNING OBJECTIVES:")
             print("-" * 60)
             if isinstance(existing_objectives, list):
                 for i, obj in enumerate(existing_objectives, 1):
@@ -893,7 +899,7 @@ class EduContentTools:
                 
                 objectives = new_objectives if new_objectives else existing_objectives
             elif choice == "3" and self.settings.is_configured():
-                print("\n🤖 Standardizing learning objectives with Azure OpenAI...")
+                print("\n[AI] Standardizing learning objectives with Azure OpenAI...")
                 obj_text = "\n".join(existing_objectives) if isinstance(existing_objectives, list) else existing_objectives
                 standardized = self.game_manager.standardize_with_ai(obj_text, "objectives")
                 if standardized:
@@ -911,7 +917,7 @@ class EduContentTools:
                             line = re.sub(r'^[a-z]\)\s*', '', line, flags=re.IGNORECASE)
                             if line and len(line) > 10:  # Only keep substantial lines
                                 standardized_list.append(line)
-                    print("\n🎯 STANDARDIZED LEARNING OBJECTIVES:")
+                    print("\n STANDARDIZED LEARNING OBJECTIVES:")
                     print("-" * 60)
                     for i, obj in enumerate(standardized_list, 1):
                         print(f"{i}. {obj}")
@@ -921,11 +927,11 @@ class EduContentTools:
                     if confirm == 'y':
                         objectives = standardized_list
                         self.game_manager.save_game_info(self.current_game, "objectives", objectives)
-                        print(f"\n✓ Standardized learning objectives saved for '{self.current_game}'!")
+                        print(f"\n[OK] Standardized learning objectives saved for '{self.current_game}'!")
                     else:
-                        print("\n✗ Standardization cancelled.")
+                        print("\n[ERROR] Standardization cancelled.")
                 else:
-                    print("\n✗ Failed to standardize objectives.")
+                    print("\n[ERROR] Failed to standardize objectives.")
                 self.wait_for_key()
                 return
             elif choice == "1":
@@ -941,7 +947,7 @@ class EduContentTools:
                 except EOFError:
                     pass
             else:
-                print("\n✗ Invalid choice!")
+                print("\n[ERROR] Invalid choice!")
                 self.wait_for_key()
                 return
         else:
@@ -962,7 +968,7 @@ class EduContentTools:
                 use_ai = input("\n\nUse Azure OpenAI to refine objectives? (y/n): ").strip().lower()
                 
                 if use_ai == 'y' and self.settings.is_configured():
-                    print("\n🤖 Refining objectives with AI...")
+                    print("\n[AI] Refining objectives with AI...")
                     objectives_text = "\n".join(objectives)
                     enhanced_objectives = self.game_manager.enhance_with_ai(objectives_text, "objectives")
                     if enhanced_objectives:
@@ -980,19 +986,19 @@ class EduContentTools:
                                 line = re.sub(r'^[a-z]\)\s*', '', line, flags=re.IGNORECASE)
                                 if line and len(line) > 10:  # Only keep substantial lines
                                     objectives.append(line)
-                        print("✓ Objectives refined!")
+                        print("[OK] Objectives refined!")
             
             self.game_manager.save_game_info(self.current_game, "objectives", objectives)
-            print(f"\n✓ Learning objectives saved for '{self.current_game}'!")
+            print(f"\n[OK] Learning objectives saved for '{self.current_game}'!")
         else:
-            print("\n✗ No objectives entered!")
+            print("\n[ERROR] No objectives entered!")
         
         self.wait_for_key()
     
     def extract_lang_files(self):
         """Option 5: Extract language files from uploaded game."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -1004,7 +1010,7 @@ class EduContentTools:
         # Check if game has uploaded world files
         info = self.game_manager.load_game_info(self.current_game)
         if not info or "world_files" not in info or not info["world_files"]:
-            print("\n✗ No world files found! Please upload a game file first.")
+            print("\n[ERROR] No world files found! Please upload a game file first.")
             self.wait_for_key()
             return
         
@@ -1013,7 +1019,7 @@ class EduContentTools:
         result = self.game_manager.extract_lang_files(self.current_game)
         
         if result and result["success"]:
-            print(f"\n✓ Language file extracted successfully!")
+            print(f"\n[OK] Language file extracted successfully!")
             print(f"\nLanguage: {result['language']}")
             print(f"File Path in Archive: {result.get('file_path', 'N/A')}")
             print(f"Total entries: {result['entry_count']}")
@@ -1021,7 +1027,7 @@ class EduContentTools:
             print(f"Analyzed {result.get('selected_from', 1)} candidate file(s)")
             
             if result['preview']:
-                print("\n📝 Preview (first 10 entries):")
+                print("\n Preview (first 10 entries):")
                 print("-" * 60)
                 for key, value in list(result['preview'].items())[:10]:
                     # Truncate long values for preview
@@ -1033,24 +1039,24 @@ class EduContentTools:
             if self.settings.is_configured():
                 analyze = input("\nAnalyze language file with Azure OpenAI? (y/n): ").strip().lower()
                 if analyze == 'y':
-                    print("\n🤖 Analyzing language file...")
+                    print("\n[AI] Analyzing language file...")
                     analysis = self.game_manager.analyze_lang_file_with_ai(self.current_game)
                     if analysis:
-                        print("\n📊 ANALYSIS:")
+                        print("\n ANALYSIS:")
                         print("-" * 60)
                         print(analysis)
                         print("-" * 60)
-                        print("\n✓ Analysis saved to game folder!")
+                        print("\n[OK] Analysis saved to game folder!")
         else:
             error_msg = result.get("error", "Unknown error") if result else "Failed to extract language files"
-            print(f"\n✗ {error_msg}")
+            print(f"\n[ERROR] {error_msg}")
         
         self.wait_for_key()
     
     def view_game_info(self):
         """View complete game information."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -1063,7 +1069,7 @@ class EduContentTools:
         
         if info:
             if "world_files" in info and info["world_files"]:
-                print("\n🌍 WORLD FILES:")
+                print("\n WORLD FILES:")
                 print("-" * 60)
                 for i, wf in enumerate(info["world_files"], 1):
                     print(f"{i}. {wf['filename']}")
@@ -1079,19 +1085,19 @@ class EduContentTools:
                 print(f"Entries: {lang_info['entry_count']}")
                 print(f"Extracted: {lang_info['extracted']}")
                 if lang_info.get('ai_analyzed'):
-                    print(f"AI Analysis: ✓")
+                    print(f"AI Analysis: [OK]")
             
             if metadata and "documents" in metadata and metadata["documents"]:
-                print("\n📄 UPLOADED DOCUMENTS:")
+                print("\n UPLOADED DOCUMENTS:")
                 print("-" * 60)
                 for doc in metadata["documents"]:
                     print(f"• {doc['filename']}")
                     print(f"  Type: {doc['type']} | Uploaded: {doc['uploaded'][:10]}")
                     if doc.get('ai_analyzed'):
-                        print(f"  AI Analysis: ✓")
+                        print(f"  AI Analysis: [OK]")
             
             if "lang_analysis" in info:
-                print("\n🤖 LANGUAGE FILE AI ANALYSIS:")
+                print("\n[AI] LANGUAGE FILE AI ANALYSIS:")
                 print("-" * 60)
                 analysis = info["lang_analysis"]
                 # Show summary or full analysis
@@ -1101,28 +1107,28 @@ class EduContentTools:
                     print(str(analysis)[:500] + "..." if len(str(analysis)) > 500 else str(analysis))
             
             if "document_analysis" in info and info["document_analysis"]:
-                print("\n📚 DOCUMENT ANALYSIS:")
+                print("\n DOCUMENT ANALYSIS:")
                 print("-" * 60)
                 doc_analyses = info["document_analysis"]
                 if isinstance(doc_analyses, dict):
                     for doc_name, doc_data in doc_analyses.items():
-                        print(f"\n📄 {doc_name}")
+                        print(f"\n {doc_name}")
                         if isinstance(doc_data, dict) and "summary" in doc_data:
                             print(f"   {doc_data['summary'][:200]}...")
                         print()
             
             if "context" in info:
-                print("\n📝 CONTEXT:")
+                print("\n CONTEXT:")
                 print("-" * 60)
                 print(info["context"])
             
             if "gameplay" in info:
-                print("\n🎮 GAMEPLAY DESCRIPTION:")
+                print("\n GAMEPLAY DESCRIPTION:")
                 print("-" * 60)
                 print(info["gameplay"])
             
             if "objectives" in info:
-                print("\n🎯 LEARNING OBJECTIVES:")
+                print("\n LEARNING OBJECTIVES:")
                 print("-" * 60)
                 if isinstance(info["objectives"], list):
                     for i, obj in enumerate(info["objectives"], 1):
@@ -1130,7 +1136,7 @@ class EduContentTools:
                 else:
                     print(info["objectives"])
         else:
-            print("\n✗ No information found for this game.")
+            print("\n[ERROR] No information found for this game.")
         
         self.wait_for_key()
     
@@ -1181,10 +1187,10 @@ class EduContentTools:
                 selection = int(load)
                 if 1 <= selection <= len(games):
                     self.current_game = games[selection - 1]
-                    print(f"\n✓ Loaded game: {self.current_game}")
+                    print(f"\n[OK] Loaded game: {self.current_game}")
                     self.wait_for_key()
         else:
-            print("\n✗ No games found!")
+            print("\n[ERROR] No games found!")
             self.wait_for_key()
     
     def upload_analyze_documents(self):
@@ -1200,7 +1206,7 @@ class EduContentTools:
         documents = self.game_manager.list_documents_in_downloads()
         
         if not documents:
-            print("\n✗ No supported documents found in Downloads folder!")
+            print("\n[ERROR] No supported documents found in Downloads folder!")
             self.wait_for_key()
             return
         
@@ -1217,44 +1223,44 @@ class EduContentTools:
                 doc_path = documents[selection - 1]
                 filename = doc_path.split('/')[-1]
                 
-                print(f"\n📄 Uploading {filename}...")
+                print(f"\n Uploading {filename}...")
                 upload_result = self.game_manager.upload_document(self.current_game, doc_path)
                 
                 if upload_result:
-                    print(f"✓ Document uploaded successfully!")
+                    print(f"[OK] Document uploaded successfully!")
                     
                     # Automatically analyze with AI if configured
                     if self.settings.is_configured():
-                        print("\n🤖 Automatically analyzing document...")
+                        print("\n[AI] Automatically analyzing document...")
                         analysis = self.game_manager.analyze_document_with_ai(self.current_game, filename)
                         
                         if analysis:
-                            print("✓ Document analysis complete!")
-                            print("\n📊 DOCUMENT ANALYSIS (Preview):")
+                            print("[OK] Document analysis complete!")
+                            print("\n DOCUMENT ANALYSIS (Preview):")
                             print("-" * 70)
                             # Show first 300 characters of analysis
                             preview = analysis[:300] + "..." if len(analysis) > 300 else analysis
                             print(preview)
                             print("-" * 70)
-                            print("\n✓ Full analysis saved to game folder!")
+                            print("\n[OK] Full analysis saved to game folder!")
                         else:
-                            print("✗ Failed to analyze document.")
+                            print("[ERROR] Failed to analyze document.")
                     else:
                         print("\n⚠ Azure OpenAI not configured. Document uploaded but not analyzed.")
                         print("   Configure Azure OpenAI in Settings to enable automatic analysis.")
                 else:
-                    print(f"\n✗ Failed to upload document!")
+                    print(f"\n[ERROR] Failed to upload document!")
             else:
-                print("\n✗ Invalid selection!")
+                print("\n[ERROR] Invalid selection!")
         except ValueError:
-            print("\n✗ Invalid input!")
+            print("\n[ERROR] Invalid input!")
         
         self.wait_for_key()
     
     def export_game_info(self):
         """Export game information to markdown."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -1266,16 +1272,16 @@ class EduContentTools:
         result = self.game_manager.export_game(self.current_game)
         
         if result:
-            print(f"\n✓ Game information exported to: {result}")
+            print(f"\n[OK] Game information exported to: {result}")
         else:
-            print("\n✗ Failed to export game information!")
+            print("\n[ERROR] Failed to export game information!")
         
         self.wait_for_key()
     
     def export_all_creations(self):
         """Export all created resources to a single folder."""
         if not self.current_game:
-            print("\n✗ Please load a game first!")
+            print("\n[ERROR] Please load a game first!")
             self.wait_for_key()
             return
         
@@ -1305,21 +1311,21 @@ class EduContentTools:
         export_format = format_map.get(format_choice, 'md')
         
         if format_choice not in format_map:
-            print("\n⚠️  Invalid choice, defaulting to Markdown format")
+            print("\n[WARNING]  Invalid choice, defaulting to Markdown format")
             export_format = 'md'
         
-        print(f"\n📄 Exporting in {export_format.upper()} format...")
+        print(f"\n Exporting in {export_format.upper()} format...")
         
         result = self.game_manager.export_all_creations(self.current_game, export_format)
         
         if result:
-            print(f"\n✓ All creations exported successfully!")
-            print(f"\n📁 Export folder: {result['folder']}")
-            print(f"\n📊 Files exported:")
+            print(f"\n[OK] All creations exported successfully!")
+            print(f"\n Export folder: {result['folder']}")
+            print(f"\n Files exported:")
             print("-" * 70)
             if result['files']:
                 for file in result['files']:
-                    print(f"  ✓ {file}")
+                    print(f"  [OK] {file}")
                 print("-" * 70)
                 print(f"\nTotal: {len(result['files'])} file(s)")
                 
@@ -1333,20 +1339,20 @@ class EduContentTools:
                         system = platform.system()
                         if system == 'Darwin':  # macOS
                             subprocess.run(['open', result['folder']])
-                            print("\n✓ Opening folder in Finder...")
+                            print("\n[OK] Opening folder in Finder...")
                         elif system == 'Windows':
                             subprocess.run(['explorer', result['folder']])
-                            print("\n✓ Opening folder in Explorer...")
+                            print("\n[OK] Opening folder in Explorer...")
                         else:  # Linux
                             subprocess.run(['xdg-open', result['folder']])
-                            print("\n✓ Opening folder...")
+                            print("\n[OK] Opening folder...")
                     except Exception as e:
-                        print(f"\n✗ Could not open folder: {e}")
+                        print(f"\n[ERROR] Could not open folder: {e}")
             else:
                 print("  No creation files found.")
                 print("  Create resources using the CREATION menu first.")
         else:
-            print("\n✗ Failed to export creations!")
+            print("\n[ERROR] Failed to export creations!")
         
         self.wait_for_key()
     
@@ -1360,7 +1366,7 @@ class EduContentTools:
         metadata = self.game_manager._load_metadata(self.current_game)
         
         if not metadata or "documents" not in metadata or not metadata["documents"]:
-            print("\n✗ No documents found for this game.")
+            print("\n[ERROR] No documents found for this game.")
             self.wait_for_key()
             return
         
@@ -1369,7 +1375,7 @@ class EduContentTools:
         print("\nUploaded documents:")
         print("-" * 70)
         for i, doc in enumerate(documents, 1):
-            status = "✓ Analyzed" if doc.get("ai_analyzed") else "Not analyzed"
+            status = "[OK] Analyzed" if doc.get("ai_analyzed") else "Not analyzed"
             print(f"{i}. {doc['filename']}")
             print(f"   Type: {doc['type']} | Uploaded: {doc['uploaded'][:10]} | {status}")
         print("-" * 70)
@@ -1388,11 +1394,11 @@ class EduContentTools:
             if confirm == "yes":
                 result = self.game_manager.remove_all_documents(self.current_game)
                 if result:
-                    print(f"\n✓ All documents and analysis removed successfully!")
+                    print(f"\n[OK] All documents and analysis removed successfully!")
                 else:
-                    print("\n✗ Failed to remove documents.")
+                    print("\n[ERROR] Failed to remove documents.")
             else:
-                print("\n✗ Cancelled.")
+                print("\n[ERROR] Cancelled.")
         else:
             try:
                 doc_num = int(choice)
@@ -1402,22 +1408,22 @@ class EduContentTools:
                     if confirm == 'y':
                         result = self.game_manager.remove_document(self.current_game, doc_to_remove['filename'])
                         if result:
-                            print(f"\n✓ Document and analysis removed successfully!")
+                            print(f"\n[OK] Document and analysis removed successfully!")
                         else:
-                            print("\n✗ Failed to remove document.")
+                            print("\n[ERROR] Failed to remove document.")
                     else:
-                        print("\n✗ Cancelled.")
+                        print("\n[ERROR] Cancelled.")
                 else:
-                    print("\n✗ Invalid document number!")
+                    print("\n[ERROR] Invalid document number!")
             except ValueError:
-                print("\n✗ Invalid input!")
+                print("\n[ERROR] Invalid input!")
         
         self.wait_for_key()
     
     def create_student_guide(self):
         """Create a student guide using all available game information."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1426,36 +1432,36 @@ class EduContentTools:
         print(f"    CREATE STUDENT GUIDE - {self.current_game}")
         print("=" * 70)
         
-        print("\n🎓 Generating comprehensive student guide...\n")
+        print("\n Generating comprehensive student guide...\n")
         
         # Show what information is available
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_student_guide(self.current_game)
         
         if result:
-            print(f"\n✓ Student guide created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Student guide created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the guide now? (y/n): ").strip().lower()
@@ -1467,14 +1473,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create student guide.")
+            print("\n[ERROR] Failed to create student guide.")
         
         self.wait_for_key()
     
     def create_student_workbook(self):
         """Create a student workbook with activities and exercises."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1483,36 +1489,36 @@ class EduContentTools:
         print(f"    CREATE STUDENT WORKBOOK - {self.current_game}")
         print("=" * 70)
         
-        print("\n📚 Generating interactive student workbook...\n")
+        print("\n Generating interactive student workbook...\n")
         
         # Show what information is available
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_student_workbook(self.current_game)
         
         if result:
-            print(f"\n✓ Student workbook created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Student workbook created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the workbook now? (y/n): ").strip().lower()
@@ -1524,14 +1530,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create student workbook.")
+            print("\n[ERROR] Failed to create student workbook.")
         
         self.wait_for_key()
     
     def create_student_quiz(self):
         """Create a student quiz with answers."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1540,37 +1546,37 @@ class EduContentTools:
         print(f"    CREATE STUDENT QUIZ - {self.current_game}")
         print("=" * 70)
         
-        print("\n📝 Generating student quiz with answer key...\n")
+        print("\n Generating student quiz with answer key...\n")
         
         # Show what information is available
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_student_quiz(self.current_game)
         
         if result:
-            print(f"\n✓ Student quiz created successfully!")
-            print(f"\n📄 Quiz saved to: {result['quiz']}")
-            print(f"📄 Answer key saved to: {result['answers']}")
+            print(f"\n[OK] Student quiz created successfully!")
+            print(f"\n Quiz saved to: {result['quiz']}")
+            print(f" Answer key saved to: {result['answers']}")
             
             # Ask if user wants to view it
             view = input("\nView the quiz now? (y/n): ").strip().lower()
@@ -1591,14 +1597,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create student quiz.")
+            print("\n[ERROR] Failed to create student quiz.")
         
         self.wait_for_key()
     
     def create_parent_guide(self):
         """Create a parent guide."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1607,36 +1613,36 @@ class EduContentTools:
         print(f"    CREATE PARENT GUIDE - {self.current_game}")
         print("=" * 70)
         
-        print("\n📝 Generating parent guide...\n")
+        print("\n Generating parent guide...\n")
         
         # Show what information is available
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_parent_guide(self.current_game)
         
         if result:
-            print(f"\n✓ Parent guide created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Parent guide created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the guide now? (y/n): ").strip().lower()
@@ -1651,14 +1657,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create parent guide.")
+            print("\n[ERROR] Failed to create parent guide.")
         
         self.wait_for_key()
     
     def create_teacher_guide(self):
         """Create a teacher guide."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1667,36 +1673,36 @@ class EduContentTools:
         print(f"    CREATE TEACHER GUIDE - {self.current_game}")
         print("=" * 70)
         
-        print("\n📝 Generating teacher guide...\n")
+        print("\n Generating teacher guide...\n")
         
         # Show what information is available
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_teacher_guide(self.current_game)
         
         if result:
-            print(f"\n✓ Teacher guide created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Teacher guide created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the guide now? (y/n): ").strip().lower()
@@ -1711,14 +1717,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create teacher guide.")
+            print("\n[ERROR] Failed to create teacher guide.")
         
         self.wait_for_key()
     
     def create_leadership_sheet(self):
         """Create a school leadership information sheet."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1727,36 +1733,36 @@ class EduContentTools:
         print(f"    CREATE SCHOOL LEADERSHIP INFO SHEET - {self.current_game}")
         print("=" * 70)
         
-        print("\n📝 Generating leadership information sheet...\n")
+        print("\n Generating leadership information sheet...\n")
         
         # Show what information is available
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_leadership_sheet(self.current_game)
         
         if result:
-            print(f"\n✓ Leadership information sheet created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Leadership information sheet created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the sheet now? (y/n): ").strip().lower()
@@ -1771,14 +1777,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create leadership information sheet.")
+            print("\n[ERROR] Failed to create leadership information sheet.")
         
         self.wait_for_key()
     
     def create_curriculum_mapping(self):
         """Create a curriculum standards mapping document."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -1788,7 +1794,7 @@ class EduContentTools:
         print("=" * 70)
         
         # Country selection
-        print("\n🌍 Select Country/Region:")
+        print("\n Select Country/Region:")
         print("-" * 70)
         countries = [
             "United States",
@@ -1812,11 +1818,11 @@ class EduContentTools:
             elif 1 <= country_choice <= len(countries):
                 selected_country = countries[country_choice - 1]
             else:
-                print("\n✗ Invalid choice!")
+                print("\n[ERROR] Invalid choice!")
                 self.wait_for_key()
                 return
         except ValueError:
-            print("\n✗ Invalid input!")
+            print("\n[ERROR] Invalid input!")
             self.wait_for_key()
             return
         
@@ -1824,12 +1830,12 @@ class EduContentTools:
         if selected_country == "Other":
             selected_country = input("\nEnter country/region name: ").strip()
             if not selected_country:
-                print("\n✗ Country name cannot be empty!")
+                print("\n[ERROR] Country name cannot be empty!")
                 self.wait_for_key()
                 return
         
         # Standards selection based on country
-        print(f"\n📚 Select Standards for {selected_country}:")
+        print(f"\n Select Standards for {selected_country}:")
         print("-" * 70)
         
         # Define standards by country
@@ -1901,7 +1907,7 @@ class EduContentTools:
         
         try:
             if not standards_input:
-                print("\n✗ No standards selected!")
+                print("\n[ERROR] No standards selected!")
                 self.wait_for_key()
                 return
             
@@ -1913,12 +1919,12 @@ class EduContentTools:
                 selected_standards = [available_standards[i-1] for i in indices if 1 <= i <= len(available_standards)]
             
             if not selected_standards:
-                print("\n✗ No valid standards selected!")
+                print("\n[ERROR] No valid standards selected!")
                 self.wait_for_key()
                 return
         
         except (ValueError, IndexError):
-            print("\n✗ Invalid input!")
+            print("\n[ERROR] Invalid input!")
             self.wait_for_key()
             return
         
@@ -1928,36 +1934,36 @@ class EduContentTools:
         print(f"    CURRICULUM STANDARDS MAPPING - {self.current_game}")
         print("=" * 70)
         
-        print(f"\n🌍 Country/Region: {selected_country}")
-        print("\n📚 Selected Standards:")
+        print(f"\n Country/Region: {selected_country}")
+        print("\n Selected Standards:")
         for standard in selected_standards:
-            print(f"  ✓ {standard}")
+            print(f"  [OK] {standard}")
         
         # Show what information is available
-        print("\n📊 Using the following game information:")
+        print("\n Using the following game information:")
         print("-" * 70)
         info = self.game_manager.load_game_info(self.current_game)
         metadata = self.game_manager._load_metadata(self.current_game)
         
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("gameplay"):
-            print("✓ Gameplay Description")
+            print("[OK] Gameplay Description")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if info and info.get("lang_analysis"):
-            print("✓ Language File Analysis (NPC dialogue & narrative)")
+            print("[OK] Language File Analysis (NPC dialogue & narrative)")
         if info and info.get("document_analysis"):
             doc_count = len(info["document_analysis"]) if isinstance(info["document_analysis"], dict) else 1
-            print(f"✓ Document Analysis ({doc_count} document(s))")
+            print(f"[OK] Document Analysis ({doc_count} document(s))")
         if metadata and metadata.get("world_files"):
-            print("✓ World File Information")
+            print("[OK] World File Information")
         print("-" * 70)
         
         confirm = input("\n\nProceed with mapping? (y/n): ").strip().lower()
         if confirm != 'y':
-            print("\n✗ Cancelled.")
+            print("\n[ERROR] Cancelled.")
             self.wait_for_key()
             return
         
@@ -1970,8 +1976,8 @@ class EduContentTools:
         )
         
         if result:
-            print(f"\n✓ Curriculum standards mapping created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Curriculum standards mapping created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the mapping now? (y/n): ").strip().lower()
@@ -1986,14 +1992,14 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create curriculum standards mapping.")
+            print("\n[ERROR] Failed to create curriculum standards mapping.")
         
         self.wait_for_key()
     
     def create_text_complexity_analysis(self):
         """Create a text complexity analysis with simplification recommendations."""
         if not self.settings.is_configured():
-            print("\n✗ Azure OpenAI must be configured to use creation features!")
+            print("\n[ERROR] Azure OpenAI must be configured to use creation features!")
             self.wait_for_key()
             return
         
@@ -2007,33 +2013,33 @@ class EduContentTools:
         metadata = self.game_manager._load_metadata(self.current_game)
         
         if not info or not info.get("lang_analysis"):
-            print("\n✗ No language file analysis found!")
+            print("\n[ERROR] No language file analysis found!")
             print("   Please upload a world file and extract language files first.")
             print("   Use option 3 to upload a world file, then option 7 to extract.")
             self.wait_for_key()
             return
         
-        print("\n📝 Generating text complexity analysis...\n")
+        print("\n Generating text complexity analysis...\n")
         
         # Show what information is available
-        print("📊 Using the following information:")
+        print(" Using the following information:")
         print("-" * 70)
-        print("✓ Language File Analysis (NPC dialogue & in-game text)")
+        print("[OK] Language File Analysis (NPC dialogue & in-game text)")
         if info and info.get("context"):
-            print("✓ Game Context")
+            print("[OK] Game Context")
         if info and info.get("objectives"):
             obj_count = len(info["objectives"]) if isinstance(info["objectives"], list) else 1
-            print(f"✓ Learning Objectives ({obj_count} objectives)")
+            print(f"[OK] Learning Objectives ({obj_count} objectives)")
         if metadata and metadata.get("lang_file"):
-            print(f"✓ Language File: {metadata['lang_file']['filename']}")
+            print(f"[OK] Language File: {metadata['lang_file']['filename']}")
         print("-" * 70)
         print("\n⏳ Processing...\n")
         
         result = self.game_manager.create_text_complexity_analysis(self.current_game)
         
         if result:
-            print(f"\n✓ Text complexity analysis created successfully!")
-            print(f"\n📄 Saved to: {result}")
+            print(f"\n[OK] Text complexity analysis created successfully!")
+            print(f"\n Saved to: {result}")
             
             # Ask if user wants to view it
             view = input("\nView the analysis now? (y/n): ").strip().lower()
@@ -2048,7 +2054,7 @@ class EduContentTools:
                 except Exception as e:
                     print(f"Error reading file: {e}")
         else:
-            print("\n✗ Failed to create text complexity analysis.")
+            print("\n[ERROR] Failed to create text complexity analysis.")
         
         self.wait_for_key()
     
@@ -2085,46 +2091,46 @@ class EduContentTools:
                 endpoint = input("\nEnter Azure OpenAI endpoint: ").strip()
                 if endpoint:
                     self.settings.set_config("endpoint", endpoint)
-                    print("✓ Endpoint saved!")
+                    print("[OK] Endpoint saved!")
                     self.wait_for_key()
             
             elif choice == "2":
                 api_key = input("\nEnter Azure OpenAI API key: ").strip()
                 if api_key:
                     self.settings.set_config("api_key", api_key)
-                    print("✓ API key saved!")
+                    print("[OK] API key saved!")
                     self.wait_for_key()
             
             elif choice == "3":
                 deployment = input("\nEnter deployment name: ").strip()
                 if deployment:
                     self.settings.set_config("deployment", deployment)
-                    print("✓ Deployment name saved!")
+                    print("[OK] Deployment name saved!")
                     self.wait_for_key()
             
             elif choice == "4":
                 api_version = input("\nEnter API version (e.g., 2024-02-15-preview): ").strip()
                 if api_version:
                     self.settings.set_config("api_version", api_version)
-                    print("✓ API version saved!")
+                    print("[OK] API version saved!")
                     self.wait_for_key()
             
             elif choice == "5":
                 if self.settings.is_configured():
-                    print("\n🔍 Testing connection...")
+                    print("\n Testing connection...")
                     if self.game_manager.test_azure_connection():
-                        print("✓ Connection successful!")
+                        print("[OK] Connection successful!")
                     else:
-                        print("✗ Connection failed!")
+                        print("[ERROR] Connection failed!")
                 else:
-                    print("\n✗ Please configure all settings first!")
+                    print("\n[ERROR] Please configure all settings first!")
                 self.wait_for_key()
             
             elif choice == "6":
                 confirm = input("\nAre you sure you want to clear all settings? (yes/no): ").strip().lower()
                 if confirm == "yes":
                     self.settings.clear_config()
-                    print("✓ Configuration cleared!")
+                    print("[OK] Configuration cleared!")
                     self.wait_for_key()
             
             elif choice == "0":
@@ -2144,97 +2150,97 @@ class EduContentTools:
                 if self.current_game:
                     self.upload_world_file()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "4":
                 if self.current_game:
                     self.add_game_context()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "5":
                 if self.current_game:
                     self.add_gameplay_description()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "6":
                 if self.current_game:
                     self.add_learning_objectives()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "7":
                 if self.current_game:
                     self.extract_lang_files()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "e":
                 if self.current_game:
                     self.export_all_creations()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "d" or choice == "doc" or choice == "docs":
                 if self.current_game:
                     self.upload_analyze_documents()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "r" or choice == "remove":
                 if self.current_game:
                     self.remove_documents()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "a":
                 if self.current_game:
                     self.create_student_guide()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "b":
                 if self.current_game:
                     self.create_student_workbook()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "c":
                 if self.current_game:
                     self.create_student_quiz()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "p" or choice == "parent":
                 if self.current_game:
                     self.create_parent_guide()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "t" or choice == "teacher":
                 if self.current_game:
                     self.create_teacher_guide()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "sl" or choice == "leadership":
                 if self.current_game:
                     self.create_leadership_sheet()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "cs" or choice == "curriculum" or choice == "standards":
                 if self.current_game:
                     self.create_curriculum_mapping()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "tc" or choice == "text" or choice == "complexity":
                 if self.current_game:
                     self.create_text_complexity_analysis()
                 else:
-                    print("\n✗ Please load a game first!")
+                    print("\n[ERROR] Please load a game first!")
                     self.wait_for_key()
             elif choice == "s" or choice == "settings":
                 self.settings_menu()
@@ -2248,10 +2254,9 @@ class EduContentTools:
                 print("Goodbye! 👋\n")
                 sys.exit(0)
             else:
-                print("\n✗ Invalid choice! Please try again.")
+                print("\n[ERROR] Invalid choice! Please try again.")
                 self.wait_for_key()
 
 
 if __name__ == "__main__":
-    app = EduContentTools()
-    app.run()
+    main()

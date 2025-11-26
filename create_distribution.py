@@ -33,7 +33,7 @@ def create_distribution():
     exe_path = os.path.join("dist", exe_name)
     
     if not os.path.exists(exe_path):
-        print(f"\n✗ Executable not found: {exe_path}")
+        print(f"\n[ERROR] Executable not found: {exe_path}")
         print("Please build the application first with: python build_app.py")
         sys.exit(1)
     
@@ -43,11 +43,11 @@ def create_distribution():
         shutil.rmtree(package_dir)
     os.makedirs(package_dir)
     
-    print(f"\n📦 Creating package: {package_name}")
+    print(f"\n Creating package: {package_name}")
     print("-" * 70)
     
     # Copy executable
-    print(f"✓ Copying executable: {exe_name}")
+    print(f"[OK] Copying executable: {exe_name}")
     shutil.copy2(exe_path, os.path.join(package_dir, exe_name))
     
     # Copy documentation
@@ -60,13 +60,13 @@ def create_distribution():
     
     for src, dst in docs:
         if os.path.exists(src):
-            print(f"✓ Copying: {src} → {dst}")
+            print(f"[OK] Copying: {src} → {dst}")
             shutil.copy2(src, os.path.join(package_dir, dst))
     
     # Create games folder
     games_dir = os.path.join(package_dir, "games")
     os.makedirs(games_dir)
-    print(f"✓ Created: games/ folder")
+    print(f"[OK] Created: games/ folder")
     
     # Create a README in games folder
     with open(os.path.join(games_dir, "README.txt"), 'w') as f:
@@ -81,7 +81,7 @@ def create_distribution():
         f.write("Backup this folder to preserve your data.\n")
     
     # Create zip archive
-    print(f"\n📦 Creating archive...")
+    print(f"\n Creating archive...")
     archive_path = shutil.make_archive(
         os.path.join("dist", package_name),
         'zip',
@@ -96,14 +96,14 @@ def create_distribution():
     print("\n" + "=" * 70)
     print("    DISTRIBUTION PACKAGE CREATED!")
     print("=" * 70)
-    print(f"\n📦 Package: {package_name}")
-    print(f"📁 Location: dist/{package_name}/")
-    print(f"📚 Archive: {os.path.basename(archive_path)}")
-    print(f"\n📊 Sizes:")
+    print(f"\n Package: {package_name}")
+    print(f" Location: dist/{package_name}/")
+    print(f" Archive: {os.path.basename(archive_path)}")
+    print(f"\n Sizes:")
     print(f"   Executable: {exe_size:.1f} MB")
     print(f"   Archive: {zip_size:.1f} MB")
     
-    print(f"\n📋 Package Contents:")
+    print(f"\n Package Contents:")
     print(f"   - {exe_name}")
     print(f"   - README.md (user guide)")
     print(f"   - BUILD_INSTRUCTIONS.md")
@@ -111,13 +111,13 @@ def create_distribution():
     print(f"   - requirements.txt")
     print(f"   - games/ (data folder)")
     
-    print(f"\n✓ Ready for distribution!")
-    print(f"\n📤 Share: {archive_path}")
+    print(f"\n[OK] Ready for distribution!")
+    print(f"\n Share: {archive_path}")
     print("=" * 70)
 
 if __name__ == "__main__":
     try:
         create_distribution()
     except Exception as e:
-        print(f"\n✗ Error: {e}")
+        print(f"\n[ERROR] Error: {e}")
         sys.exit(1)

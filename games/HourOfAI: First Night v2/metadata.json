@@ -1,7 +1,7 @@
 {
     "name": "HourOfAI: First Night v2",
     "created": "2025-11-25T10:39:11.800058",
-    "modified": "2025-11-25T10:57:35.876626",
+    "modified": "2025-11-26T11:59:36.645293",
     "world_files": [
         {
             "filename": "HAI2025_v1.0.22.mcworld",
@@ -27,8 +27,6 @@
     "lang_file": {
         "filename": "en_US.lang",
         "entry_count": 612,
-        "extracted": "2025-11-25T10:40:11.655681",
-        "ai_analyzed": true,
-        "analyzed_at": "2025-11-25T10:40:43.632604"
+        "extracted": "2025-11-26T11:59:36.645287"
     }
 }
