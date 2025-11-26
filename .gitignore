@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# PyInstaller
+build/
+dist/EduContentTools
+dist/EduContentTools.exe
+dist/EduContentTools-*/
+*.spec.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Application Data
+games/*/worlds/*.mcworld
+games/*/documents/*
+games/*/exports/*
+
+# Keep structure
+!games/.gitkeep
+!games/*/worlds/.gitkeep
+!games/*/documents/.gitkeep
+!games/*/exports/.gitkeep
+
+# Keep distribution archives
+!dist/*.zip

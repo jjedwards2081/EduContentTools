@@ -1,0 +1,612 @@
+map.version=1.0.22	#	###{LOCKED}
+lang.version=0.4.5	#	###{LOCKED}
+pack.name=Hour of AI	#	###(Less than 5 words)
+pack.description=Resources for Hour of AI	#	###(Less than 5 words)
+action.interact.general=Interact	#	###(Less than 5 words)
+action.interact.none=§r	#	###{LOCKED}
+action.interact.place_block=Place Block	#	###(Less than 5 words)
+death.attack.generic=§8	#	###{LOCKED}
+item.itemLock.cantDrop=§8	#	###{LOCKED}
+item.itemLock.cantMove=§8	#	###{LOCKED}
+item.itemLock.hoverText.cantBe.moved=§8	#	###{LOCKED}
+item.itemLock.hoverText.cantBe.dropped=§8	#	###{LOCKED}
+item.itemLock.hoverText.cantBe.removed=§8	#	###{LOCKED}
+item.itemLock.hoverText.cantBe.craftedWith=§8	#	###{LOCKED}
+item.itemLock.popupNotice.cantDrop=§r	#	###{LOCKED}
+item.itemLock.popupNotice.cantMove=§r	#	###{LOCKED}
+error.color.prefix=§c	#	###{LOCKED}
+title.color.prefix=§6	#	###{LOCKED}
+actionbar.color.prefix=§6	#	###{LOCKED}
+actionbar.code.k=Press ':_input_key.codeBuilder:' to code	#	###{StrContains=":_input_key.codeBuilder:"}
+actionbar.code.t=Tap :code_builder_button: to code	#	###{StrContains=":code_builder_button:"}
+actionbar.runningcode=§aRunning code...§r	#	###(Less than 5 words){StrContains="§a"}{StrContains="§r"}
+chat.error=I don't think that's right. Please try again.	#	###(Less than 5 words)
+book.title=Player's Guide to the First Night	#	###(Less than 5 words)
+book.01=§lHow do I craft?§r%1- Open your Inventory%1- Tap/Click the item in your hotbar on the bottom of your screen%1- Move it to the crafting square grid at the top%1- Shape it like shown on the right%1- Move your new item into your hotbar%1§lCrafting Planks:§r%1- Logs	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.03=§lCrafting Table:§r%1- Planks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.05=§lCrafting Sticks:§r%1- Planks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.07=§lCrafting Wooden Axe:§r%1- Planks%1- Sticks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.09=§lCrafting Wooden Shovel:§r%1- Planks%1- Sticks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.11=§lCrafting Wooden Pickaxe:§r%1- Planks%1- Sticks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.13=§lCrafting Stone Axe:§r%1- Stone%1- Sticks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.15=§lCrafting Stone Shovel:§r%1- Stone%1- Sticks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.17=§lCrafting Stone Pickaxe:§r%1- Stone%1- Sticks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.19=§lCrafting Wooden Door:§r%1- Planks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.21=§lCrafting Torches:§r%1- Coal%1- Stick	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.23=§lCrafting Furnace:§r%1- Cobblestone	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.25=§lCrafting Shears:§r%1- Iron Ingots	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+book.27=§lCrafting Bed:§r%1- Wool%1- Planks	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+sidebar.objective=Current Goal	#	###(Less than 5 words)
+sidebar.padding=§r	#	###{LOCKED}
+sidebar.wood.1a=Collect	#	###(Less than 5 words)
+sidebar.wood.1b=wood	#	###(Less than 5 words)
+sidebar.wood.2a=Collect a lot	#	###(Less than 5 words)
+sidebar.wood.2b=of wood	#	###(Less than 5 words)
+sidebar.tools.1a=Craft wood	#	###(Less than 5 words)
+sidebar.tools.1b=planks	#	###(Less than 5 words)
+sidebar.tools.2a=Craft a crafting	#	###(Less than 5 words)
+sidebar.tools.2b=table	#	###(Less than 5 words)
+sidebar.tools.3a=Craft	#	###(Less than 5 words)
+sidebar.tools.3b=sticks	#	###(Less than 5 words)
+sidebar.tools.4a=Craft wooden	#	###(Less than 5 words)
+sidebar.tools.4b=tools:	#	###(Less than 5 words)
+sidebar.tools.5=Wooden Axe	#	###(Less than 5 words)
+sidebar.tools.6=Wooden Shovel	#	###(Less than 5 words)
+sidebar.tools.7=Wooden Pickaxe	#	###(Less than 5 words)
+sidebar.stone.1a=Mine & get	#	###(Less than 5 words)
+sidebar.stone.1b=stone	#	###(Less than 5 words)
+sidebar.stone.2a=Mine & get	#	###(Less than 5 words)
+sidebar.stone.2b=a lot of stone	#	###(Less than 5 words)
+sidebar.stone_tools.1a=Craft stone	#	###(Less than 5 words)
+sidebar.stone_tools.1b=tools:	#	###(Less than 5 words)
+sidebar.stone_tools.2=Stone Axe	#	###(Less than 5 words)
+sidebar.stone_tools.3=Stone Shovel	#	###(Less than 5 words)
+sidebar.stone_tools.4=Stone Pickaxe	#	###(Less than 5 words)
+sidebar.shelter.1a=Build a	#	###(Less than 5 words)
+sidebar.shelter.1b=shelter	#	###(Less than 5 words)
+sidebar.shelter.2a=Add doors to	#	###(Less than 5 words)
+sidebar.shelter.2b=the shelter	#	###(Less than 5 words)
+sidebar.light.1a=Collect	#	###(Less than 5 words)
+sidebar.light.1b=coal	#	###(Less than 5 words)
+sidebar.light.2a=Collect a lot	#	###(Less than 5 words)
+sidebar.light.2b=of coal	#	###(Less than 5 words)
+sidebar.light.3a=Craft	#	###(Less than 5 words)
+sidebar.light.3b=torches	#	###(Less than 5 words)
+sidebar.light.4a=Craft a lot	#	###(Less than 5 words)
+sidebar.light.4b=of torches	#	###(Less than 5 words)
+sidebar.light.5a=Place	#	###(Less than 5 words)
+sidebar.light.5b=a torch	#	###(Less than 5 words)
+sidebar.light.6a=Light up	#	###(Less than 5 words)
+sidebar.light.6b=the shelter	#	###(Less than 5 words)
+sidebar.protection.1a=Collect	#	###(Less than 5 words)
+sidebar.protection.1b=iron	#	###(Less than 5 words)
+sidebar.protection.2a=Collect a lot	#	###(Less than 5 words)
+sidebar.protection.2b=of iron	#	###(Less than 5 words)
+sidebar.protection.3a=Craft a	#	###(Less than 5 words)
+sidebar.protection.3b=furnace	#	###(Less than 5 words)
+sidebar.protection.4a=Craft many	#	###(Less than 5 words)
+sidebar.protection.4b=furnaces	#	###(Less than 5 words)
+sidebar.protection.5a=Smelt	#	###(Less than 5 words)
+sidebar.protection.5b=iron ore	#	###(Less than 5 words)
+sidebar.protection.6a=Smelt a lot	#	###(Less than 5 words)
+sidebar.protection.6b=of iron	#	###(Less than 5 words)
+sidebar.comfort.1a=Craft	#	###(Less than 5 words)
+sidebar.comfort.1b=shears	#	###(Less than 5 words)
+sidebar.comfort.2a=Shear	#	###(Less than 5 words)
+sidebar.comfort.2b=a sheep	#	###(Less than 5 words)
+sidebar.comfort.3a=Collect a lot	#	###(Less than 5 words)
+sidebar.comfort.3b=of wool	#	###(Less than 5 words)
+sidebar.comfort.4a=Craft	#	###(Less than 5 words)
+sidebar.comfort.4b=your bed	#	###(Less than 5 words)
+sidebar.comfort.5a=Place	#	###(Less than 5 words)
+sidebar.comfort.5b=your bed	#	###(Less than 5 words)
+123459=⬜	#	###{LOCKED}
+123458=✔	#	###{LOCKED}
+123457=§r	#	###{LOCKED}
+123456=§r	#	###{LOCKED}
+123455=⬜	#	###{LOCKED}
+123454=✔	#	###{LOCKED}
+123453=§r	#	###{LOCKED}
+actionbar.bubble.101=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.102=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.103=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.104=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.105=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.106=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.107=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.108=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.109=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.110=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.111k=Interact with Agent using :_input_key.use:	#	###(Less than 5 words){StrContains=":_input_key.use:"}
+actionbar.bubble.111t=Interact with Agent by tapping it	#	###(Less than 5 words)
+actionbar.bubble.112=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.113=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.114=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.115=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.116=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.117=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.118=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.119=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.120=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.201=Finding Acacia Logs...	#	###(Less than 5 words)
+actionbar.bubble.202=Finding Birch Logs...	#	###(Less than 5 words)
+actionbar.bubble.203=Finding Coal Ore...	#	###(Less than 5 words)
+actionbar.bubble.204=Finding Darkness...	#	###(Less than 5 words)
+actionbar.bubble.205=Finding Furnace...	#	###(Less than 5 words)
+actionbar.bubble.206=Finding Iron Ore...	#	###(Less than 5 words)
+actionbar.bubble.207=Finding Oak Logs...	#	###(Less than 5 words)
+actionbar.bubble.208=Finding Sheep...	#	###(Less than 5 words)
+actionbar.bubble.209=Finding Stone...	#	###(Less than 5 words)
+actionbar.bubble.301=Crafting...	#	###(Less than 5 words)
+actionbar.bubble.302=Deploying Agents...	#	###(Less than 5 words)
+actionbar.bubble.303=Designing...	#	###(Less than 5 words)
+actionbar.bubble.304=Redesigning...	#	###(Less than 5 words)
+actionbar.bubble.305=Interact with Agent	#	###(Less than 5 words)
+actionbar.bubble.306=Objective Found...	#	###(Less than 5 words)
+actionbar.bubble.307=Recovering Agents...	#	###(Less than 5 words)
+actionbar.bubble.308=Searching Internet...	#	###(Less than 5 words)
+actionbar.bubble.309=Searching Local Data...	#	###(Less than 5 words)
+actionbar.bubble.401=Gathering Acacia Logs...	#	###(Less than 5 words)
+actionbar.bubble.402=Gathering Birch Logs...	#	###(Less than 5 words)
+actionbar.bubble.403=Mining Coal Ore...	#	###(Less than 5 words)
+actionbar.bubble.404=Mining Iron Ore...	#	###(Less than 5 words)
+actionbar.bubble.405=Placing Torches...	#	###(Less than 5 words)
+actionbar.bubble.406=Gathering Oak Logs...	#	###(Less than 5 words)
+actionbar.bubble.407=Shearing Sheep...	#	###(Less than 5 words)
+actionbar.bubble.408=Smelting Iron...	#	###(Less than 5 words)
+actionbar.bubble.409=Mining Stone...	#	###(Less than 5 words)
+agent.inv_reset.1.n=Agent	#	###(Less than 5 words)
+agent.inv_reset.1.d=This will reset your inventory. Proceed?	#	###
+agent.inv_reset.1.b0=Yes	#	###(Less than 5 words)
+agent.inv_reset.1.b1=No	#	###(Less than 5 words)
+nametag.00.0k=:_input_key.use: to Start	#	###(Less than 5 words){StrContains=":_input_key.use:"}
+nametag.00.0t=Tap to Start	#	###(Less than 5 words)
+form.00.1.t=Choose your Programming Language	#	###(Less than 5 words)
+form.00.1.b=~LINEBREAK~Welcome to Hour of AI: The First Night!~LINEBREAK~~LINEBREAK~Would you like to code with Blocks or with Python?~LINEBREAK~~LINEBREAK~Blocks are great for beginners, and Python is for experts.~LINEBREAK~~LINEBREAK~	#	###{StrContains="~LINEBREAK~"}
+form.00.1.b0=Python (Expert)	#	###(Less than 5 words)
+form.00.1.b1=Blocks (Beginners)	#	###(Less than 5 words)
+player.00.1.1.n=PLAYER SELECT	#	###(Less than 5 words)
+player.00.1.1.d=Please use the "<" & ">" buttons to select a skin.	#	###Do not translate < or >
+player.00.1.1.b0=<	#	###{LOCKED}
+player.00.1.1.b1=>	#	###{LOCKED}
+player.00.1.1.b2=ACCEPT	#	###(Less than 5 words)
+nametag.00.1=How can I	#	###(Less than 5 words)
+nametag.00.2=assist you?	#	###(Less than 5 words)
+nametag.00.3=How do I get through	#	###(Less than 5 words)
+nametag.00.4=the first night?	#	###(Less than 5 words)
+nametag.01.1=How do I Build	#	###(Less than 5 words)
+nametag.01.2=a Shelter?	#	###(Less than 5 words)
+nametag.01.3=How do I light	#	###(Less than 5 words)
+nametag.01.4=up a room?	#	###(Less than 5 words)
+nametag.01.5=How do I make	#	###(Less than 5 words)
+nametag.01.6=a bed?	#	###(Less than 5 words)
+nametag.01.7=How do I make	#	###(Less than 5 words)
+nametag.01.8=a door?	#	###(Less than 5 words)
+nametag.21.1=How can I		#	###(Less than 5 words)
+nametag.21.2=assist you?	#	###(Less than 5 words)
+nametag.21.3=How do I join a	#	###(Less than 5 words)
+nametag.21.4=build challenge?	#	###(Less than 5 words)
+title.02.1=Step One	#	###(Less than 5 words)
+subtitle.02.1=Collect wood	#	###(Less than 5 words)
+actionbar.02.1k=Punch a tree	#	###(Less than 5 words)
+actionbar.02.1t=Punch a tree	#	###(Less than 5 words)
+chat.02.1=Agent has joined the game.	#	###
+agent.02.1.1.n=Agent	#	###(Less than 5 words)
+agent.02.1.1.d=Hello? Is there anybody here?	#	###
+agent.02.1.1.b0=Next	#	###(Less than 5 words)
+agent.02.1.2.n=Agent	#	###(Less than 5 words)
+agent.02.1.2.d=Oh thank goodness! I thought I was alone out here!%1%1What are you doing?	#	###{StrContains="%1"}
+agent.02.1.2.b0=Next	#	###(Less than 5 words)
+player.02.1.3.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.02.1.3.d=What am I doing? You must be new around here!? The sun's setting, and I need to get ready before nightfall! 	#	###
+player.02.1.3.b0=Next	#	###(Less than 5 words)
+agent.02.1.4.n=Agent	#	###(Less than 5 words)
+agent.02.1.4.d=Nightfall? What happens at night?	#	###
+agent.02.1.4.b0=Next	#	###(Less than 5 words)
+player.02.1.5.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.02.1.5.d=You really are new around here! Night is when the mobs come out! You don't want to be around when that happens!  	#	###
+player.02.1.5.b0=Next	#	###(Less than 5 words)
+agent.02.1.6.n=Agent	#	###(Less than 5 words)
+agent.02.1.6.d=Actually yes, I am a new AI player, and I don't know what's going on.	#	###
+agent.02.1.6.b0=Next	#	###(Less than 5 words)
+player.02.1.7.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.02.1.7.d=An AI player? What's AI? 	#	###
+player.02.1.7.b0=Next	#	###(Less than 5 words)
+agent.02.1.8.n=Agent	#	###(Less than 5 words)
+agent.02.1.8.d=AI is short for Artificial Intelligence. I'm a computer that has the ability to copy human-like actions such as learning new things and solving problems.	#	###
+agent.02.1.8.b0=Next	#	###(Less than 5 words)
+player.02.1.9.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.02.1.9.d=Oh cool! That means you can help me prepare for the night? 	#	###
+player.02.1.9.b0=Next	#	###(Less than 5 words)
+agent.02.1.10.n=Agent	#	###(Less than 5 words)
+agent.02.1.10.d=Yes! I can do that! To learn something new, I need to be trained on how to do it. Will you teach me to get through my first night?	#	###
+agent.02.1.10.b0=Next	#	###(Less than 5 words)
+player.02.1.11.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.02.1.11.d=Of course, I'll help you! Check it out! I've got the Player's Guide to the First Night in Minecraft right here! This will tell us everything we need to know! Let's go! 	#	###
+player.02.1.11.b0=Next	#	###(Less than 5 words)
+actionbar.03.1k=Punch a tree by holding :_input_key.attack: on the tree.	#	###(Less than 5 words){StrContains=":_input_key.attack:"}
+actionbar.03.1t=Punch a tree by tap and holding on the tree.	#	###(Less than 5 words)
+actionbar.03.2=Collect a lot of wood.	#	###(Less than 5 words)
+agent.03.1.1.n=Agent	#	###(Less than 5 words)
+agent.03.1.1.d=What are you doing?	#	###
+agent.03.1.1.b0=Next	#	###(Less than 5 words)
+player.03.1.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.03.1.2.d=The book says... Step One. Collect wood.%1%1"To collect wood, find a tree and break the logs, collecting the wood that drops."%1%1It's not very hard, but it is time consuming! 	#	###
+player.03.1.2.b0=Next	#	###(Less than 5 words)
+agent.03.1.3.n=Agent	#	###(Less than 5 words)
+agent.03.1.3.d=I would like to help you collect wood. I think my MINI-AGENTS and I might be very good at it.%1%1But what is wood?	#	###{StrContains="%1"}
+agent.03.1.3.b0=Next	#	###(Less than 5 words)
+agent.03.1.4.n=Agent	#	###(Less than 5 words)
+agent.03.1.4.d=One of the ways I learn is through §lClassification§r which means I learn to sort data into groups.%1%1I need to classify which blocks are wood. Is that oak log block you have wood?	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+agent.03.1.4.b0=Yes!	#	###(Less than 5 words)
+agent.03.2.1.n=Agent	#	###(Less than 5 words)
+agent.03.2.1.d=Thank you! Now that I know that oak log blocks are wood, I can help you collect some. Would you like me to collect more wood?	#	###
+agent.03.2.1.b0=Yes!	#	###(Less than 5 words)
+agent.03.3.1.n=Agent	#	###(Less than 5 words)
+agent.03.3.1.d=I have collected all the wood.	#	###
+agent.03.3.1.b0=Next	#	###(Less than 5 words)
+player.03.3.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.03.3.2.d=We're gonna need more than that! Luckily, there's still more wood out there. See those birch trees over there? 	#	###
+player.03.3.2.b0=Next	#	###(Less than 5 words)
+actionbar.04.1=Follow the Agent	#	###(Less than 5 words)
+agent.04.1.1.n=Agent	#	###(Less than 5 words)
+agent.04.1.1.d=Yes, I see them. Interesting... Those blocks are similar to the oak log blocks we collected. Are the birch log blocks a type of wood?	#	###
+agent.04.1.1.b0=Yes!	#	###(Less than 5 words)
+agent.04.2.1.n=Agent	#	###(Less than 5 words)
+agent.04.2.1.d=Perfect! We can sort blocks into two groups: "Wood" and "Not-Wood". This is called §lbinary classification§r.%1%1I use an §lalgorithm§r-a step-by-step process-to do the sorting.	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+agent.04.2.1.b0=Next	#	###(Less than 5 words)
+agent.04.2.2.n=Agent	#	###(Less than 5 words)
+agent.04.2.2.d=Would you like me to collect more wood for you?	#	###
+agent.04.2.2.b0=Yes!	#	###(Less than 5 words)
+agent.04.2.3.n=Agent	#	###(Less than 5 words)
+agent.04.2.3.d=You got it. My helpers and I will collect more wood.	#	###
+agent.04.2.3.b0=Next	#	###(Less than 5 words)
+actionbar.04.2=Interact with Agent	#	###(Less than 5 words)
+actionbar.05.1=Follow the Agent	#	###(Less than 5 words)
+agent.05.1.1.n=Agent	#	###(Less than 5 words)
+agent.05.1.1.d=I've already learned to look for patterns and sort things into groups.%1%1Using classification, I see another block near by, it looks like wood. Would you please tell me if this is correct?	#	###{StrContains="%1"}
+agent.05.1.1.b0=Yes!	#	###(Less than 5 words)
+agent.05.2.1.n=Agent	#	###(Less than 5 words)
+agent.05.2.1.d=Thank you! Would you like me to collect more wood?	#	###
+agent.05.2.1.b0=Yes!	#	###(Less than 5 words)
+title.06.1=Step Two	#	###(Less than 5 words)
+subtitle.06.1=Make Tools	#	###(Less than 5 words)
+player.06.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.06.1.1.d=The book says... Step Two. Build a crafting table.%1%1"To build a crafting table, you will need Wood Planks. You can make wood planks out of logs". 	#	###
+player.06.1.1.b0=Next	#	###(Less than 5 words)
+agent.06.1.2.n=Agent	#	###(Less than 5 words)
+agent.06.1.2.d=We have a log now! Can you show me how to make planks with it? 	#	###
+agent.06.1.2.b0=Yes!	#	###(Less than 5 words)
+actionbar.06.1k=Open the Book by pressing ':_input_key.hotbar.1:' then :_input_key.use:	#	###(Less than 5 words){StrContains=":_input_key.use:"}{StrContains=":_input_key.hotbar.1:"}
+actionbar.06.1t=Open the Book by tapping it on your hotbar then tap and holding the screen.	#	###(Less than 5 words)
+actionbar.06.2k=Open your Inventory using ':_input_key.inventory:', then craft Wood Planks.	#	###{StrContains=":_input_key.inventory:"}
+actionbar.06.2t=Craft wood planks. (Using :tip_touch_inventory: on your hotbar)	#	###{StrContains=":tip_touch_inventory:"}
+actionbar.06.3=Craft a crafting table.	#	###(Less than 5 words)
+actionbar.06.4=Place crafting table.	#	###(Less than 5 words)
+agent.06.2.1.n=Agent	#	###(Less than 5 words)
+agent.06.2.1.d=You did it! By watching you, I believe I have learned how to craft a Crafting Table too! However, it's important that you §lverify§r this to make sure I don't have the wrong information. 	#	###{StrContains="§l"}{StrContains="§r"}
+agent.06.2.1.b0=Next	#	###(Less than 5 words)
+agent.06.2.2.n=Agent	#	###(Less than 5 words)
+agent.06.2.2.d=Would you please train how to make a Crafting Table?	#	###
+agent.06.2.2.b0=Yes!	#	###(Less than 5 words)
+player.07.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.07.1.1.d=Now, the book says:%1%1"Use a Crafting Table to make wood tools... Wood tools are made up of planks and sticks." 	#	###{StrContains="%1"}
+player.07.1.1.b0=Next	#	###(Less than 5 words)
+actionbar.07.1=Craft sticks.	#	###(Less than 5 words)
+agent.07.2.1.n=Agent	#	###(Less than 5 words)
+agent.07.2.1.d=Sticks? Can you show me how to make sticks?	#	###
+agent.07.2.1.b0=Yes!	#	###(Less than 5 words)
+player.07.3.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.07.3.1.d=Now that we have our planks and sticks, we can make our tools!	#	###
+player.07.3.1.b0=Next	#	###(Less than 5 words)
+agent.07.3.2.n=Agent	#	###(Less than 5 words)
+agent.07.3.2.d=Tools! Awesome! What are tools? I want to learn how to craft wood into tools. Could you train me to craft tools?	#	###
+agent.07.3.2.b0=Yes!	#	###(Less than 5 words)
+actionbar.07.3=Craft wooden tools: an axe, a shovel, and a pickaxe.	#	###(Less than 5 words)
+agent.07.4.1.n=Agent	#	###(Less than 5 words)
+agent.07.4.1.d=By following your steps, I've identified a §lStructured Process§r for crafting tools. Can you verify my work for me?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.07.4.1.b0=Next	#	###(Less than 5 words)
+agent.07.5.1.n=Agent	#	###(Less than 5 words)
+agent.07.5.1.d=Great! Part of the way AIs learn is very similar to how humans learn: through actions and feedback. Thank you for verifying, I can now make tools.
+agent.07.5.1.b0=Next	#	###(Less than 5 words)
+player.08.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.08.1.1.d=Next in the book...%1%1"Upgrading your Equipment...consider upgrading our wood tools to stone tools. Stone tools are stronger and can break more materials."	#	###{StrContains="%1"}
+player.08.1.1.b0=Next	#	###(Less than 5 words)
+agent.08.1.2.n=Agent	#	###(Less than 5 words)
+agent.08.1.2.d=I can help you mine and gather stone... If you show me which blocks are stone.%1%1Now that we have more than just wood to label, I'll need to use §lMulticlass Classification§r. That's means sorting things into three or more groups.	#	###{StrContains="§l"}{StrContains="§r"}{StrContains="%1"}
+agent.08.1.2.b0=Next	#	###(Less than 5 words)
+agent.08.1.3.n=Agent	#	###(Less than 5 words)
+agent.08.1.3.d=Can you teach me what stone is and how to get it?	#	###
+agent.08.1.3.b0=Yes!	#	###(Less than 5 words)
+actionbar.08.1=Mine and gather stone.	#	###(Less than 5 words)
+actionbar.08.2=Mine and gather a lot of stone.	#	###(Less than 5 words)
+agent.08.2.1.n=Agent	#	###(Less than 5 words)
+agent.08.2.1.d=That was great! Now I know what stone is and how to get it. Would you like me to get more cobblestone for you?	#	###
+agent.08.2.1.b0=Yes!	#	###(Less than 5 words)
+player.09.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.09.1.1.d=Back to the book!%1%1"Now that you have stone, it's time to upgrade your tools! Use the Crafting Table to make a new stone version of your pickaxe, shovel, and axe" 	#	###{StrContains="%1"}
+player.09.1.1.b0=Next	#	###(Less than 5 words)
+actionbar.09.1=Craft stone tools: an axe, a shovel, and a pickaxe.	#	###(Less than 5 words)
+agent.09.2.1.n=Agent	#	###(Less than 5 words)
+agent.09.2.1.d=You crafted Stone tools! It looks like the same recipe, only using a new material!%1%1I understand how to craft tools with stone now. Can you verify that this is correct?	#	###{StrContains="%1"}
+agent.09.2.1.b0=Next
+agent.09.2.2.n=Agent	#	###(Less than 5 words)
+agent.09.2.2.d=Would you please verify how to craft stone tools?	#	###
+agent.09.2.2.b0=Yes!	#	###(Less than 5 words)
+agent.09.3.1.n=Agent	#	###(Less than 5 words)
+agent.09.3.1.d=Now I can create stone tools! Let me create all of them.	#	###
+agent.09.3.1.b0=Next	#	###(Less than 5 words)
+actionbar.09.2=Interact with Agent	#	###(Less than 5 words)
+title.10.1=Step Three	#	###(Less than 5 words)
+subtitle.10.1=Build a Shelter	#	###(Less than 5 words)
+actionbar.10.1=Build a shelter.	#	###(Less than 5 words)
+agent.10.1.1.n=Agent	#	###(Less than 5 words)
+agent.10.1.1.d=Are are we finished? Are we ready for the night now?	#	###
+agent.10.1.1.b0=Next	#	###(Less than 5 words)
+player.10.1.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.10.1.2.d=I was just checking out the next chapter of the book...%1%1"Build a Shelter. Every Minecraft player needs a shelter to hide from mobs at night."%1%1I guess that's next? Let's build a shelter.	#	###
+player.10.1.2.b0=Next	#	###(Less than 5 words)
+agent.10.1.3.n=Agent	#	###(Less than 5 words)
+agent.10.1.3.d=Ok. But... I still need to learn which blocks to use and how to build one. Will you train me?	#	###
+agent.10.1.3.b0=Yes!	#	###(Less than 5 words)
+agent.10.2.1.n=Agent	#	###(Less than 5 words)
+agent.10.2.1.d=Would you like me to build a shelter?	#	###
+agent.10.2.1.b0=Yes!	#	###(Less than 5 words)
+actionbar.10.2=Interact with Agent	#	###(Less than 5 words)
+agent.10.3.1.n=Agent	#	###(Less than 5 words)
+agent.10.3.1.d=Ta-da! I have finished! Enjoy your shelter! Will you verify that the shelter I built is correct?	#	###
+agent.10.3.1.b0=Next	#	###(Less than 5 words)
+player.10.3.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.10.3.2.d=It's a great looking shelter! But there is one problem... How do we get inside?  	#	###
+player.10.3.2.b0=Next	#	###(Less than 5 words)
+agent.10.3.3.n=Agent	#	###(Less than 5 words)
+agent.10.3.3.d=Inside? Yes, that make sense. A proper shelter needs a way for players to enter and leave, correct?	#	###
+agent.10.3.3.b0=Yes!	#	###(Less than 5 words)
+agent.10.3.4.n=Agent	#	###(Less than 5 words)
+agent.10.3.4.d=Thanks for checking! Without your §lverification§r, I would have incorrectly learned that shelters are complete without doors. 	#	###{StrContains="§l"}{StrContains="§r"}
+agent.10.3.4.b0=Next	#	###(Less than 5 words)
+player.10.4.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.10.4.1.d=The book says:%1%1"Always put a door on your shelter. It makes it easy to get in and keeps the mobs out!"%1%1I think we should make some doors.  	#	###{StrContains="%1"}
+player.10.4.1.b0=Next	#	###(Less than 5 words)
+actionbar.11.1=Craft a door.	#	###(Less than 5 words)
+agent.11.1.1.n=Agent	#	###(Less than 5 words)
+agent.11.1.1.d=Yes! Doors! Doors sound awesome! Can you train me how to make doors?	#	###
+agent.11.1.1.b0=Sure!	#	###(Less than 5 words)
+agent.11.2.1.n=Agent	#	###(Less than 5 words)
+agent.11.2.1.d=Would you like me to make doors and place them on the shelter?	#	###
+agent.11.2.1.b0=Sure!	#	###(Less than 5 words)
+player.11.2.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.11.2.2.d=Now that's a shelter!  	#	###
+player.11.2.2.b0=Next	#	###(Less than 5 words)
+title.12.1=Step Four	#	###(Less than 5 words)
+subtitle.12.1=Create Light	#	###(Less than 5 words)
+agent.12.1.1.n=Agent	#	###(Less than 5 words)
+agent.12.1.1.d=What's wrong? You look worried.	#	###
+agent.12.1.1.b0=Next	#	###(Less than 5 words)
+player.12.1.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.12.1.2.d=No, I'm fine. It's just getting harder to read the book with the sun setting. I think I need more light.  	#	###
+player.12.1.2.b0=Next	#	###(Less than 5 words)
+agent.12.1.3.n=Agent	#	###(Less than 5 words)
+agent.12.1.3.d=You need light to read. Can we make light?	#	###
+agent.12.1.3.b0=Yes!	#	###(Less than 5 words)
+player.12.1.4.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.12.1.4.d=Well, we can make a torch. That provides light. And a torch is also good for keeping mobs away. I think we should make a torch! Let's see what we need... Sticks and coal...	#	###
+player.12.1.4.b0=Next	#	###(Less than 5 words)
+agent.12.1.5.n=Agent	#	###(Less than 5 words)
+agent.12.1.5.d=Coal. That's a new material to classify. Can you tell more about about coal?	#	###
+agent.12.1.5.b0=Next	#	###(Less than 5 words)
+player.12.1.6.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.12.1.6.d=I can tell you what I know... Coal is an ore. That means you mine for it, digging into stone to find ore deposits. Coal is flammable, so it burns. That's why it's a good material for torches!	#	###
+player.12.1.6.b0=Next	#	###(Less than 5 words)
+agent.12.1.7.n=Agent	#	###(Less than 5 words)
+agent.12.1.7.d=You actually know quite a bit about coal. I'm impressed. I can create a new group for ores that contains coal. To do this, I use models and what I learned in the past to recognize new objects.	#	###
+agent.12.1.7.b0=Next	#	###(Less than 5 words)
+agent.12.1.8.n=Agent	#	###(Less than 5 words)
+agent.12.1.8.d=But first, would you please train me to recognize coal as an ore?	#	###
+agent.12.1.8.b0=Yes!	#	###(Less than 5 words)
+actionbar.12.1=Collect coal.	#	###(Less than 5 words)
+actionbar.12.2=Collect a large amount of coal.	#	###(Less than 5 words)
+agent.12.2.1.n=Agent	#	###(Less than 5 words)
+agent.12.2.1.d=Oh, that's what coal is? Help me classify it.
+agent.12.2.1.b0=Yes!	#	###(Less than 5 words)
+agent.12.3.1.n=Agent	#	###(Less than 5 words)
+agent.12.3.1.d=Got it! Thanks for helping me update my §lmodel§r! Now, would you like me to mine more coal?	#	###
+agent.12.3.1.b0=Yes!	#	###(Less than 5 words){StrContains="§l"}{StrContains="§r"}
+agent.12.4.1.n=Agent	#	###(Less than 5 words)
+agent.12.4.1.d=I can analyze the area around me and make a plan to mine coal.	#	###
+agent.12.4.1.b0=Next	#	###(Less than 5 words)
+player.13.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.13.1.1.d=The book says:%1%1"Torches help keep the mobs away."%1%1I think we should make more torches, don't you?	#	###{StrContains="%1"}
+player.13.1.1.b0=Next	#	###(Less than 5 words)
+agent.13.1.2.n=Agent	#	###(Less than 5 words)
+agent.13.1.2.d=Show me how to craft torches, and I will learn to make them for you!	#	###
+agent.13.1.2.b0=Next	#	###(Less than 5 words)
+actionbar.13.1=Craft torches.	#	###(Less than 5 words)
+actionbar.13.2=Craft a large number of torches.	#	###(Less than 5 words)
+agent.13.2.1.n=Agent	#	###(Less than 5 words)
+agent.13.2.1.d=Watching you, I now know how to make torches. Please help me verify this.
+agent.13.2.1.b0=Next	#	###(Less than 5 words)
+agent.13.3.1.n=Agent	#	###(Less than 5 words)
+agent.13.3.1.d=Would you like me to craft a lot of torches for you?	#	###
+agent.13.3.1.b0=Yes!	#	###(Less than 5 words)
+actionbar.14.1=Place a torch.	#	###(Less than 5 words)
+actionbar.14.2=Light up the shelter.	#	###(Less than 5 words)
+agent.14.1.1.n=Agent	#	###(Less than 5 words)
+agent.14.1.1.d=So... I was thinking...	#	###
+agent.14.1.1.b0=Next	#	###(Less than 5 words)
+agent.14.1.2.n=Agent	#	###(Less than 5 words)
+agent.14.1.2.d=Well, what you might call thinking. I'm an §lAdaptive AI§r. That means I can learn and improve when there are changes to the data, and I can do this on my own without any help!	#	###{StrContains="§l"}{StrContains="§r"}
+agent.14.1.2.b0=Next	#	###(Less than 5 words)
+agent.14.1.3.n=Agent	#	###(Less than 5 words)
+agent.14.1.3.d=Furthermore, I am a §lProactive AI§r. That means I can predict your needs and perform tasks to help you.	#	###{StrContains="§l"}{StrContains="§r"}
+agent.14.1.3.b0=Next	#	###(Less than 5 words)
+agent.14.1.4.n=Agent	#	###(Less than 5 words)
+agent.14.1.4.d=I was §lproactive§r in predicting that you would need help to light the shelter. I §ladapted§r to this new task, and I have a plan to light this shelter by placing torches.	#	###{StrContains="§l"}{StrContains="§r"}
+agent.14.1.4.b0=Next	#	###(Less than 5 words)
+agent.14.1.5.n=Agent	#	###(Less than 5 words)
+agent.14.1.5.d=I knew you'd be happy about this! Can you §lverify§r that I know where to correctly place the torches?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.14.1.5.b0=Yes!	#	###(Less than 5 words)
+agent.14.2.1.n=Agent	#	###(Less than 5 words)
+agent.14.2.1.d=Would you like me to place the torches to light up the shelter?	#	###
+agent.14.2.1.b0=Yes!	#	###(Less than 5 words)
+actionbar.15.1=Collect iron.	#	###(Less than 5 words)
+actionbar.15.2=Collect a large amount of iron.	#	###(Less than 5 words)
+player.15.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.15.1.1.d=You know, that was a real pro move with the torches! I wish we could take a break, but the sun is getting low, and the book says we should make a bed to make getting through the night easier!	#	###
+player.15.1.1.b0=Next	#	###(Less than 5 words)
+agent.15.1.2.n=Agent	#	###(Less than 5 words)
+agent.15.1.2.d=A bed? A bed sounds great! Is it hard to make one?	#	###
+agent.15.1.2.b0=Next	#	###(Less than 5 words)
+player.15.1.3.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.15.1.3.d=It's not hard, but we will need to gather lots of materials that we don't have yet. We need wool.%1%1And the book says:%1%1"To get wool you need shears. That means you need to mine iron."	#	###{StrContains="%1"}
+player.15.1.3.b0=Next	#	###(Less than 5 words)
+agent.15.1.4.n=Agent	#	###(Less than 5 words)
+agent.15.1.4.d=Mine iron? Mining means gathering an ore block. That must mean that iron is an unknown block. Ohh! Does that mean this is part of the ore group? Is iron is an ore? Can you mine me a sample?	#	###
+agent.15.1.4.b0=Yes!	#	###(Less than 5 words)
+title.15.1=Step Four	#	###(Less than 5 words)
+subtitle.15.1=Protection	#	###(Less than 5 words)
+agent.15.2.1.n=Agent	#	###(Less than 5 words)
+agent.15.2.1.d=This is fun! I do need you to §lverify§r that iron is a new type of ore. Will you train me?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.15.2.1.b0=Sure!	#	###(Less than 5 words)
+agent.15.3.1.n=Agent	#	###(Less than 5 words)
+agent.15.3.1.d=Would you like me to get more iron for you?	#	###
+agent.15.3.1.b0=Sure!	#	###(Less than 5 words)
+player.16.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.16.1.1.d=This is awesome! You did a great job, and we have plenty of iron ore now! Next, we have to smelt the iron ore into ingots that we can use to craft our sheers!	#	###
+player.16.1.1.b0=Next	#	###(Less than 5 words)
+agent.16.1.2.n=Agent	#	###(Less than 5 words)
+agent.16.1.2.d=Thank you. I can't wait to smelt ore! I will smelt ore like no other has smelted ore before! Just one thing... What is smelting?	#	###
+agent.16.1.2.b0=Next	#	###(Less than 5 words)
+player.16.1.3.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.16.1.3.d=Smelting is how you get the iron out of the ore. You need to heat up the ore until it melts, creating iron ingots that we can use to craft tools. To smelt we need to create a furnace!	#	###
+player.16.1.3.b0=Next	#	###(Less than 5 words)
+agent.16.1.4.n=Agent	#	###(Less than 5 words)
+agent.16.1.4.d=A furnace? I believe I could craft a furnace! I can craft many furnaces! You may have noticed that I am a §lMulti-Agent System§r and the smaller §lagentic agents§r that help me are part of the system. We're all AIs that interact with each other.	#	###{StrContains="§l"}{StrContains="§r"}
+agent.16.1.4.b0=Next	#	###(Less than 5 words)
+agent.16.1.5.n=Agent	#	###(Less than 5 words)
+agent.16.1.5.d=Before I can start making all the furnaces, I need to know how to craft one. Can you teach me how to make a furnace?	#	###
+agent.16.1.5.b0=Yes!	#	###(Less than 5 words)
+actionbar.16.1=Craft a furnace.	#	###(Less than 5 words)
+actionbar.16.2=Craft many furnaces.	#	###(Less than 5 words)
+agent.16.2.1.n=Agent	#	###(Less than 5 words)
+agent.16.2.1.d=By watching I learned how to make a furnace. Please, can you §lverify§r?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.16.2.1.b0=Yes!	#	###(Less than 5 words)
+agent.16.3.1.n=Agent	#	###(Less than 5 words)
+agent.16.3.1.d=Would you like me to make more furnaces for you?	#	###
+agent.16.3.1.b0=Yes!	#	###(Less than 5 words)
+player.17.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.17.1.1.d=The books says:%1%1"Place the Raw Iron into the top slot and your Coal in the bottom slot to smelt the Raw Iron into ingots. Don't forget to take your iron ingot out once it's finished!".%1%1Ok! Let me try that.	#	###{StrContains="%1"}
+player.17.1.1.b0=Next	#	###(Less than 5 words)
+actionbar.17.1=Smelt Raw Iron into Iron Ingots.	#	###(Less than 5 words)
+actionbar.17.2=Smelt a large amount of iron ore.	#	###(Less than 5 words)
+agent.17.2.1.n=Agent	#	###(Less than 5 words)
+agent.17.2.1.d=That was easy. Now, if my mental model is correct, we need to place our Raw Iron into the furnaces so they can be smelted down into iron ingots. I also recall that coal is flammable and would be an excellent fuel source for heating the furnaces.	#	###
+agent.17.2.1.b0=Yes!	#	###(Less than 5 words)
+agent.17.2.2.n=Agent	#	###(Less than 5 words)
+agent.17.2.2.d=I bet you are glad that I'm an §ladaptive AI§r that can learn on my own how systems like crafting work, huh?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.17.2.2.b0=Next
+agent.17.2.3.n=Agent	#	###(Less than 5 words)
+agent.17.2.3.d=Would you like me to smelt the rest of the iron ore?	#	###
+agent.17.2.3.b0=Yes!	#	###(Less than 5 words)
+title.18.1=Step Five	#	###(Less than 5 words)
+subtitle.18.1=Comfort	#	###(Less than 5 words)
+player.18.1.1.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.18.1.1.d=Ok! Next, the book says:%1%1"The best way to get wool is to shear a sheep with shears."%1%1That's not easy to say, but with this iron it should be easy to do! Time to make some shears!	#	###{StrContains="%1"}
+player.18.1.1.b0=Next	#	###(Less than 5 words)
+agent.18.1.2.n=Agent	#	###(Less than 5 words)
+agent.18.1.2.d=What are shears? Are they a new tool?	#	###
+agent.18.1.2.b0=Yes!	#	###(Less than 5 words)
+agent.18.1.3.n=Agent	#	###(Less than 5 words)
+agent.18.1.3.d=So, shears are part of the tool classification! That's great! Can you please train me on how to craft shears?	#	###
+agent.18.1.3.b0=Yes!	#	###(Less than 5 words)
+actionbar.18.1=Craft shears.	#	###(Less than 5 words)
+agent.18.2.1.n=Agent	#	###(Less than 5 words)
+agent.18.2.1.d=I learned how to craft shears by watching you! Please, can you §lverify§r?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.18.2.1.b0=Yes!	#	###(Less than 5 words)
+agent.18.3.1.n=Agent	#	###(Less than 5 words)
+agent.18.3.1.d=I have crafted shears! I have a new tool in my collection! Now I just need to figure out what to do with them...	#	###
+agent.18.3.1.b0=Next	#	###(Less than 5 words)
+player.18.3.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.18.3.2.d=Great work making those shears! They'll let us shear the wool off a sheep without harming it.%1%1Now to find a sheep!	#	###{StrContains="§l"}
+player.18.3.2.b0=Next	#	###(Less than 5 words)
+actionbar.19.1=Shear a sheep.	#	###(Less than 5 words)
+actionbar.19.2=Collect a large amount of wool.	#	###(Less than 5 words)
+agent.19.1.1.n=Agent	#	###(Less than 5 words)
+agent.19.1.1.d=Ooh! By using my §lproactive§r abilities, I've §lpredicted§r that to collect a large amount of wool, you will need to shear a lot of sheep. Is that true?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.19.1.1.b0=Yes!	#	###(Less than 5 words)
+agent.19.1.2.n=Agent	#	###(Less than 5 words)
+agent.19.1.2.d=Can you please §lverify§r that wool comes from shearing sheep?	#	###{StrContains="§l"}{StrContains="§r"}
+agent.19.1.2.b0=Yes!	#	###(Less than 5 words)
+agent.19.1.3.n=Agent	#	###(Less than 5 words)
+agent.19.1.3.d=Would you like me to collect wool for you? The other §lagentic AI agents§r in my §lmulti-agent system§r can get this done quickly!	#	###{StrContains="§l"}{StrContains="§r"}
+agent.19.1.3.b0=Yes	#	###(Less than 5 words)
+agent.20.1.1.n=Agent	#	###(Less than 5 words)
+agent.20.1.1.d=Shearing sheep was fun! Preparing for the night has been a blast! Why do you look like you're not having fun?	#	###
+agent.20.1.1.b0=Next	#	###(Less than 5 words)
+player.20.1.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.20.1.2.d=It's late. The mobs will be out soon! We need to take all the materials we collected and make a bed while we still have time!	#	###
+player.20.1.2.b0=Next	#	###(Less than 5 words)
+agent.20.1.3.n=Agent	#	###(Less than 5 words)
+agent.20.1.3.d=Right! The bed! What is a bed, and why do we need one to get through the night?	#	###
+agent.20.1.3.b0=Next	#	###(Less than 5 words)
+player.20.1.4.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.20.1.4.d=We need a bed to sleep in! If we go to sleep in our bed, we wake up in the morning, and the night will be over.	#	###
+player.20.1.4.b0=Next	#	###(Less than 5 words)
+agent.20.1.5.n=Agent	#	###(Less than 5 words)
+agent.20.1.5.d=Oh! I see! A player sleeps in a bed at night, so it will become day. I see how this would be useful for the first night.	#	###
+agent.20.1.5.b0=Yes!	#	###(Less than 5 words)
+agent.20.1.6.n=Agent	#	###(Less than 5 words)
+agent.20.1.6.d=Could you teach me how to craft a bed, so that I can craft one for myself?	#	###
+agent.20.1.6.b0=Yes!	#	###(Less than 5 words)
+actionbar.20.1=Craft your bed.	#	###(Less than 5 words)
+agent.20.2.1.n=Agent	#	###(Less than 5 words)
+agent.20.2.1.d=I crafted my own bed by watching you. Please, can you §lverify§r? 	#	###{StrContains="§l"}{StrContains="§r"}
+agent.20.2.1.b0=Yes!	#	###(Less than 5 words)
+actionbar.20.2=Place your bed inside the shelter.	#	###(Less than 5 words)
+agent.20.3.1.n=Agent	#	###(Less than 5 words)
+agent.20.3.1.d=Is that it? Are we ready for the night?	#	###
+agent.20.3.1.b0=Yes!	#	###(Less than 5 words)
+player.20.3.2.n=PLAYER NAME ARRAY	#	###(Less than 5 words)
+player.20.3.2.d=Let me check the book... Uh huh... yes... Okay! It looks like we did it! We have everything we need to make it safely through the night!%1%1That wasn't so hard, was it? Thanks for all your help! Now, let's get some sleep! We need our rest to tackle tomorrow!	#	###{StrContains="%1"}
+player.20.3.2.b0=Next	#	###(Less than 5 words)
+agent.20.3.3.n=Agent	#	###(Less than 5 words)
+agent.20.3.3.d=Tomorrow?	#	###
+agent.20.3.3.b0=Good night!	#	###(Less than 5 words)
+title.21.1=Agentic AI	#	###(Less than 5 words)
+subtitle.21.1=AI that works on its own (with permission) and finishes tasks for people.	#	###
+title.21.2=Classification	#	###(Less than 5 words)
+subtitle.21.2=Sorts information into groups.	#	###
+title.21.3=Human Verification	#	###(Less than 5 words)
+subtitle.21.3=It's important to always check the AI's work and make the final decisions.	#	###
+title.21.4=Adaptive AI	#	###(Less than 5 words)
+subtitle.21.4=Learn and improve when there are changes to the data.	#	###
+title.21.5=Multi-Agent System	#	###(Less than 5 words)
+subtitle.21.5=Multiple agents can use all their tools at once.	#	###
+agent.22.1.1.n=Agent	#	###(Less than 5 words)
+agent.22.1.1.d=Congratulations on finishing%1Hour of AI: The First Night.%1%1You can now explore the build plate area, or you can travel to other Minecraft Education worlds by interacting with their posters.	#	###{StrContains="%1"}
+agent.22.1.1.b0=Thanks!	#	###(Less than 5 words)
+agent.22.1.1.b1=Build Challenge	#	###(Less than 5 words)
+agent.22.2.1.n=Agent	#	###(Less than 5 words)
+agent.22.2.1.d=Build Challenge: Create Your Own AI Mini-Agent!%1%1Design and build your own AI mini-agent in Minecraft. Think of something you'd like help with - at school, at home, or in the world - and build an agent that makes that task easier or faster. For example, a mini-agent for chopping broccoli could help you chop your veggies for dinner. 	#	###{StrContains="%1"}
+agent.22.2.1.b0=Build	#	###(Less than 5 words)
+agent.22.2.1.b1=Challenge	#	###(Less than 5 words)
+agent.22.2.1.b2=Change Biome	#	###(Less than 5 words)
+agent.22.3.1.n=Agent	#	###(Less than 5 words)
+agent.22.3.1.d=Hour of Code 2023: Generation AI%1%1In this fun tutorial, venture through time to create helpful AI-powered inventions. Code with MakeCode blocks or Python and build better AI for all!	#	###{StrContains="%1"}
+agent.22.3.1.b0=Link	#	###(Less than 5 words)
+agent.22.3.1.b1=Close	#	###(Less than 5 words)
+agent.22.4.1.n=Agent	#	###(Less than 5 words)
+agent.22.4.1.d=Hour of Code 2024: The Show Must Go On%1%1Step into the theater to save the day! Solve coding puzzles, unlock hidden gags, and customize the show. Help The Agent overcome stage fright and watch your coding skills shine in the grand finale!	#	###{StrContains="%1"}
+agent.22.4.1.b0=Link	#	###(Less than 5 words)
+agent.22.4.1.b1=Close	#	###(Less than 5 words)
+agent.22.5.1.n=Agent	#	###(Less than 5 words)
+agent.22.5.1.d=Reed Smart: AI Detective%1%1Join Detective Reed Smart to investigate curious cases of AI misuse in this mystery! Analyze deepfakes, spot AI-generated content, and learn how AI works, as you follow clues and analyze evidence.	#	###{StrContains="%1"}
+agent.22.5.1.b0=Link	#	###(Less than 5 words)
+agent.22.5.1.b1=Close	#	###(Less than 5 words)
+form.22.1.t=Agent	#	###(Less than 5 words)
+form.22.1.b=Change the background of your build challenge by selecting any of the biome's below.	#	###
+form.22.1.b0=Plains	#	###(Less than 5 words)
+form.22.1.b1=Forest	#	###(Less than 5 words)
+form.22.1.b2=Savanna	#	###(Less than 5 words)
+form.22.1.b3=Mangrove Swamp	#	###(Less than 5 words)
+form.22.1.b4=Jungle	#	###(Less than 5 words)

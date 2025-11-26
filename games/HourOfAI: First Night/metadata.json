@@ -1,0 +1,34 @@
+{
+    "name": "HourOfAI: First Night",
+    "created": "2025-11-25T09:22:05.786284",
+    "modified": "2025-11-25T10:01:11.609280",
+    "world_files": [
+        {
+            "filename": "HAI2025_v1.0.22.mcworld",
+            "uploaded": "2025-11-25T09:22:24.367214"
+        }
+    ],
+    "lang_file": {
+        "filename": "en_US.lang",
+        "entry_count": 612,
+        "extracted": "2025-11-25T09:40:33.692743",
+        "ai_analyzed": true,
+        "analyzed_at": "2025-11-25T09:41:11.891732"
+    },
+    "documents": [
+        {
+            "filename": "Generation AI Educator Guide.pdf",
+            "type": "PDF",
+            "uploaded": "2025-11-25T09:52:14.371318",
+            "ai_analyzed": true,
+            "analyzed_at": "2025-11-25T09:52:50.979455"
+        },
+        {
+            "filename": "HOAI25_Educator Guide Final ENG.pdf",
+            "type": "PDF",
+            "uploaded": "2025-11-25T10:00:32.241398",
+            "ai_analyzed": true,
+            "analyzed_at": "2025-11-25T10:01:11.609278"
+        }
+    ]
+}

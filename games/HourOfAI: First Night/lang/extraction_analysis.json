@@ -1,0 +1,46 @@
+{
+    "selected_file": "resource_packs/hoairp/texts/en_US.lang",
+    "score": 2474,
+    "candidates": [
+        {
+            "path": "behavior_packs/corebp/texts/en_US.lang",
+            "score": 76,
+            "entries": 2
+        },
+        {
+            "path": "behavior_packs/hoaibp/texts/en_US.lang",
+            "score": 76,
+            "entries": 2
+        },
+        {
+            "path": "resource_packs/corerp/texts/en_US.lang",
+            "score": 56,
+            "entries": 2
+        },
+        {
+            "path": "resource_packs/hoairp/texts/en_GB.lang",
+            "score": 2453,
+            "entries": 606
+        },
+        {
+            "path": "resource_packs/hoairp/texts/en_US.lang",
+            "score": 2474,
+            "entries": 612
+        },
+        {
+            "path": "resource_packs/hoc_cert/texts/en_GB.lang",
+            "score": 420,
+            "entries": 38
+        },
+        {
+            "path": "resource_packs/hoc_cert/texts/en_US.lang",
+            "score": 420,
+            "entries": 38
+        },
+        {
+            "path": "texts/en_US.lang",
+            "score": 26,
+            "entries": 2
+        }
+    ]
+}
